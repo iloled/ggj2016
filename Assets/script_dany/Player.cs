@@ -11,7 +11,7 @@ public class Player {
 
 	public Player()
 	{
-		party = new Party ();
+		party = new Party (this);
 		ressource = new Ressource ();
 
 	}

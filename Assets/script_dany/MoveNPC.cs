@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 
 public class MoveNPC : MonoBehaviour {
 
@@ -7,13 +9,25 @@ public class MoveNPC : MonoBehaviour {
 	Main myMain;
 
 	[SerializeField]
+	Text actionPanelText;
+
+	[SerializeField]
+	GameObject btMove;
+
+	[SerializeField]
+	GameObject btAttack;
+
+	[SerializeField]
+	GameObject btConvert;
+
+	[SerializeField]
 	CameraScript camScript;
 
 	[SerializeField]
 	TileScript myTiles;
 
-
-
+	[SerializeField]
+	GameObject panelAction;
 	// Use this for initialization
 	void Start () {
 	
@@ -26,6 +40,8 @@ public class MoveNPC : MonoBehaviour {
 	void Update () {
 	
 		if (Input.GetKeyDown(KeyCode.Mouse0) && camScript.checkHit ()) {
+
+				
 
 				int pos = camScript.GetPostionTile();
 				
@@ -44,21 +60,39 @@ public class MoveNPC : MonoBehaviour {
 
 							movableTiles = null;
 							myTiles.ClearSprite();
+							panelAction.SetActive(false);
 							break;
 						}
 							else
 						{
-							Debug.Log ("else");
 							movableTiles = null;
 							myTiles.ClearSprite();
+							panelAction.SetActive(false);
 						}
 					}
 				}
-				else if(t.npc != null)
+			else if(t.npc != null &&  myMain.g.currentPlayer == t.npc.party.p)
 				{
+
 					currentNpc = t.npc;
+					var actions = t.npc.actionList();
+					/*
+					if ( actions.Contains(MoveAction.))
+					{
+						btMove.SetActive(true);
+					}
+					else
+					{
+						btMove.SetActive(true);
+					}
+					*/
+					/*
 					movableTiles = t.npc.listTilesMovement(32).ToArray();
 					myTiles.ChangeSprite(movableTiles, 1);
+					*/
+					panelAction.SetActive(true);
+					
+
 				} 
 		}
 	}
