@@ -14,8 +14,6 @@ public class NPC  {
 	public player camp;			// le npc peut etre neutre ou sous le contrôle d'un joueur
 	public int position;	// la position du npc			
 
-
-
 	// Use this for initialization
 
 
@@ -52,7 +50,7 @@ public class NPC  {
 		pAttack = 1;
 		range = 1;
 		camp = player.neutral;
-		typePerson = typeNPC;
+		//	typePerson = typeNPC;
 
 	}
 		
