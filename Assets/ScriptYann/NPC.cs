@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NPC  {
 
@@ -7,17 +8,27 @@ public class NPC  {
 	public enum type{athelte,schoolboy,geek};
 	public enum job{warrior, archer, mage};
 
+	public string name;
+
 	public int hp;				// les points de vie
 	public int mp;				// les points de mana
+
+	public int maxHp;				// les points de vie
+	public int maxMp;				// les points de mana
+
 	public int pAttack;			// les points d'attaque
 	public int range;			// la portée des attaques
 	public player camp;			// le npc peut etre neutre ou sous le contrôle d'un joueur
 	public int position;		// la position du npc	
 	public type typePerson; 	// le type du npc
+	public int moveRange;		// la porté du déplacement du NPC
 
-	// Use this for initialization
-
-
+	public NPC(){
+		hp = maxHp =  1;
+		mp = maxMp = 1;
+		pAttack = 1;
+		range = 1;
+	}
 
 
 	public NPC(type typeNPC){
@@ -44,12 +55,67 @@ public class NPC  {
 		range = 1;
 		camp = player.neutral;
 		typePerson = typeNPC;
+		position = -1;  				//signifie que le NPC ne trouve pas sur le plateau
+		moveRange=2;
 
 	}
-		
-	// deplace le NPC
-	public void moveNPC(int newPosition){
+
+	public void setPosition(int newPosition){
 		position = newPosition;
+	}
+		
+	// donne les case où le npc peut se deplacer
+	//-- précondition: le npc dois se trouver sur une case valide
+	public List<int> listTilesMovement(int boardSize){
+
+		//-- calcul de la ligne pour les bordures
+		int landmark=0;
+		while (position > landmark + boardSize - 1)
+			landmark += boardSize;
+
+			List<int> result= new List<int>();
+
+		//-- le cas où le npc n'est pas sur le plateau
+		for (int i=0; i <= moveRange; i++) {
+				for (int j = moveRange-i; j >= 0; j--) {
+
+					//-- si la case ne depasse la ordure
+				if ((position +  j + i * boardSize)>=landmark+i * boardSize &&
+					(position +  j + i * boardSize)<=landmark+ i * boardSize + boardSize - 1 &&
+					(position +  j + i * boardSize)<boardSize*boardSize &&
+					!result.Exists(element=>element==(position + j + i * boardSize))) {
+					result.Add (position + j + i * boardSize);
+					Debug.Log(position + j + i * boardSize);
+					}
+
+				if ((position -  j + i * boardSize)>=landmark+i * boardSize &&
+					(position -  j + i * boardSize)<=landmark+ i * boardSize + boardSize - 1 &&
+					(position -  j + i * boardSize)<boardSize*boardSize &&
+					!result.Exists(element=>element==(position - j + i * boardSize)) ) {
+					result.Add (position - j + i * boardSize);
+					Debug.Log(position - j + i * boardSize);
+				}
+
+				if ((position +  j - i * boardSize)>=landmark-i * boardSize &&
+					(position +  j - i * boardSize)<=landmark- i * boardSize + boardSize - 1 &&
+					(position +  j - i * boardSize)<boardSize*boardSize &&
+					!result.Exists(element=>element==(position + j - i * boardSize))) {
+					result.Add (position + j - i * boardSize);
+					Debug.Log(position + j - i * boardSize);
+				}
+
+				if ((position -  j - i * boardSize)>=landmark-i * boardSize &&
+					(position -  j - i * boardSize)<=landmark- i * boardSize + boardSize - 1 &&
+					(position -  j - i * boardSize)<boardSize*boardSize &&
+					!result.Exists(element=>element==(position - j - i * boardSize)) ) {
+					result.Add (position - j - i * boardSize);
+					Debug.Log(position - j - i * boardSize);
+				}
+
+				}
+
+			}
+		return result;
 	}
 
 	//le NPC attaque
@@ -73,7 +139,7 @@ public class NPC  {
 				+hp+" hp\n"
 				+mp+" mp\n"
 				+pAttack+" attack\n"
-				+"type: "+typePerson);
+				+"type: "+typePerson+"\ncase :"+position);
 	}
 
 }
