@@ -12,7 +12,8 @@ public class NPC  {
 	public int pAttack;			// les points d'attaque
 	public int range;			// la portée des attaques
 	public player camp;			// le npc peut etre neutre ou sous le contrôle d'un joueur
-	public int position;	// la position du npc			
+	public int position;		// la position du npc	
+	public type typePerson; 	// le type du npc
 
 	// Use this for initialization
 
@@ -50,7 +51,7 @@ public class NPC  {
 		pAttack = 1;
 		range = 1;
 		camp = player.neutral;
-		//	typePerson = typeNPC;
+		typePerson = typeNPC;
 
 	}
 		
