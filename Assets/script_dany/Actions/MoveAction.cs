@@ -7,9 +7,9 @@ public class MoveAction : Action
 	private int position;
 	private NPC npc;
 
-
 	public MoveAction (Player p, NPC npc,  int position)
 	{
+		base.name = "Move";
 		base.p = p;
 		this.position = position;
 		this.npc = npc;

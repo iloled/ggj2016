@@ -126,8 +126,6 @@ public class Game  {
 		updatePartyList ();
 		playerName.text = currentPlayer.name;
 
-
-
 	}
 
 	private void updateActionText()
@@ -142,9 +140,7 @@ public class Game  {
 		string text = "";
 
 		foreach (NPC n in p.members) {
-			text += n.name + "\n";
-			text += n.hp + "/"+n.maxHp+"\n";
-			text += n.mp + "/" + n.maxMp+ "\n\n";
+			text += n.getDescription ();
 		}
 		partyInfo.text = text;
 	}

@@ -9,6 +9,7 @@ public class AttackAction : Action {
 
 	public AttackAction (Player p, NPC attacker, NPC target)
 	{
+		base.name = "Attack";
 		base.p = p;
 		this.attacker = attacker;
 		this.target = target;

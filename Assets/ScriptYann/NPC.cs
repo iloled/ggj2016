@@ -148,9 +148,24 @@ public class NPC  {
 				+"type: "+typePerson+"\ncase :"+position);
 	}
 
+	public string getDescription()
+	{
+		var text = "";
+		text += name + "\n";
+		text += "HP : " +hp + "/"+maxHp+"\n";
+		text += "MP : " +mp + "/" + maxMp+ "\n\n";
+		return text;
+	}
+
+
 	public void killNPC()
 	{
 		this.party.removeNPC (this);
+	}
+
+	public List<string> actionList()
+	{
+		return null;
 	}
 
 }

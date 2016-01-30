@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class Messiah : NPC {
-	public Messiah()
+	
+	public Messiah() : base()
 	{
-		base.NPC ();
 		base.name = "Messiah";
 	}
 }
