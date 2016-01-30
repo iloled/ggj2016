@@ -8,8 +8,14 @@ public class NPC  {
 	public enum type{athelte,schoolboy,geek};
 	public enum job{warrior, archer, mage};
 
+	public string name;
+
 	public int hp;				// les points de vie
 	public int mp;				// les points de mana
+
+	public int maxHp;				// les points de vie
+	public int maxMp;				// les points de mana
+
 	public int pAttack;			// les points d'attaque
 	public int range;			// la portée des attaques
 	public player camp;			// le npc peut etre neutre ou sous le contrôle d'un joueur
@@ -17,16 +23,11 @@ public class NPC  {
 	public type typePerson; 	// le type du npc
 	public int moveRange;		// la porté du déplacement du NPC
 
-	// Use this for initialization
-
-
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public NPC(){
+		hp = maxHp =  1;
+		mp = maxMp = 1;
+		pAttack = 1;
+		range = 1;
 	}
 
 

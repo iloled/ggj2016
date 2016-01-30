@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Main : MonoBehaviour {
+
+	public Text actionText;
+	public Text playerName;
+	public Text partyInfo;
 
 	Game g;
 
@@ -9,7 +14,9 @@ public class Main : MonoBehaviour {
 	void Start () {
 		
 		g = new Game ();
-		g.startGame ();
+		g.initText (actionText, playerName, partyInfo);
+		g.initPlayer ();
+		g.startGame (); 
 	}
 	
 	// Update is called once per frame
