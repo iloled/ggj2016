@@ -11,11 +11,9 @@ public class jOverSomething : MonoBehaviour {
 	[SerializeField]
 	GameObject panelInfo;
 
-	/*[SerializeField]
-	Text hpText;
-
 	[SerializeField]
-	Text mpText;*/
+	Text descText;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +24,10 @@ public class jOverSomething : MonoBehaviour {
 	void Update () {
 
 		if (camScript.checkHit ()) {
-			if (camScript.GetTag () == "npc") {
+			if (camScript.GetTransform ().tag == "npc") {
 				panelInfo.SetActive (true);
+				descText.text = Board.tiles[camScript.GetPostionTile()].npc.getDescription();;
+				//
 			} else
 			{
 				panelInfo.SetActive (false);

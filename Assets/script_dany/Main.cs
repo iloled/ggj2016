@@ -11,7 +11,7 @@ public class Main : MonoBehaviour {
 	public Text blood;
 	public Text holyWater;
 
-	Game g;
+	public Game g;
 
 	// Use this for initialization
 	void Start () {
