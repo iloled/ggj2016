@@ -17,15 +17,14 @@ public class main : MonoBehaviour {
 		List<int> list=npc.listTilesMovement (5); */
 
 		Player player = new Player ();
-		Debug.Log("blood:"+player.ressource.blood+
-			"\ngold:"+player.ressource.blood+
-			"\nholy water:"+player.ressource.holyWater);
+		Debug.Log("blood:"+player.ressource.blood
+			+"\ngold:"+player.ressource.blood
+			+"\nholy water:"+player.ressource.holyWater);
 
-		player.addRandomRessources();
-		player.addRandomRessources();
-		Debug.Log("blood:"+player.ressource.blood+
-			"\ngold:"+player.ressource.blood+
-			"\nholy water:"+player.ressource.holyWater);
+		player.ressource.addRandomRessource();
+		Debug.Log("blood:"+player.ressource.blood
+			+"\ngold:"+player.ressource.blood
+			+"\nholy water:"+player.ressource.holyWater);
 
 	}
 	

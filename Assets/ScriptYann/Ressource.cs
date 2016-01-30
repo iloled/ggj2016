@@ -16,9 +16,22 @@ public class Ressource   {
 	}
 
 	public Ressource(){
-		blood = 1;
-		gold = 1;
-		holyWater = 1;
+		blood = 0;
+		gold = 0;
+		holyWater = 0;
+	}
+
+	public Ressource(int blood, int gold, int holyWater){
+		this.blood = blood;
+		this.gold = gold;
+		this.holyWater = holyWater;
+	}
+
+	public void addAllRessource(){
+		blood ++;
+		gold ++;
+		holyWater ++;
+		Debug.Log ("gold = "+gold);
 	}
 		
 
