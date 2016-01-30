@@ -4,8 +4,8 @@ using System.Collections;
 public class NPC  {
 
 	public enum player{neutral, player1,player2};
-	public enum type{neutral, player1,player2};
-	public enum job{neutral, player1,player2};
+	public enum type{athelte,schoolboy,geek};
+	public enum job{warrior, archer, mage};
 
 	public int hp;				// les points de vie
 	public int mp;				// les points de mana
@@ -35,7 +35,6 @@ public class NPC  {
 		pAttack = 1;
 		range = 2;
 		camp = player.neutral;
-		job = "";
 	}
 		
 	// deplace le NPC
