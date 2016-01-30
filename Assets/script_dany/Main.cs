@@ -16,7 +16,9 @@ public class Main : MonoBehaviour {
 		g = new Game ();
 		g.initText (actionText, playerName, partyInfo);
 		g.initPlayer ();
+		g.initBoard ();
 		g.startGame (); 
+
 	}
 	
 	// Update is called once per frame
