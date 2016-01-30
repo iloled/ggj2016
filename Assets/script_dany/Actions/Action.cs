@@ -4,7 +4,7 @@ using System.Collections;
 public class Action {
 
 	protected Player p;
-	protected string name;
+	public string name;
 
 	public Action()
 	{
@@ -17,8 +17,6 @@ public class Action {
 
 	public void execute()
 	{
-		Debug.Log ("execute action " + p.name);
-		p.actionNumber--;
 		behaviour ();
 	}
 

@@ -4,12 +4,19 @@
 public class MoveAction : Action
 {
 
-	private int position;
-	private NPC npc;
+	public int position;
+	public NPC npc;
+
+	public const  string MOVE = "Move";
+
+	public MoveAction()
+	{
+		base.name = MOVE;
+	}
 
 	public MoveAction (Player p, NPC npc,  int position)
 	{
-		base.name = "Move";
+		base.name = MOVE;
 		base.p = p;
 		this.position = position;
 		this.npc = npc;
@@ -19,6 +26,7 @@ public class MoveAction : Action
 	{
 		npc.position = position;
 	}
+
 }
 
 
