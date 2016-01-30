@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Game  {
 
-	static int ACTION_PER_TURN = 2; 
+	static int ACTION_PER_TURN = 3; 
 
 	Player p = new Player();
 	Player p2 = new Player();
@@ -28,6 +28,7 @@ public class Game  {
 		n1.mp = 4;
 		n1.maxHp = 10;
 		n1.maxMp = 4;
+		n1.position = 5;
 
 		NPC n2 = new NPC ();
 		n2.name = "Mage";
@@ -35,6 +36,7 @@ public class Game  {
 		n2.mp = 4;
 		n2.maxHp = 6;
 		n2.maxMp = 4;
+		n2.position = 10;
 
 		p.party.members.Add (n1);
 		p.party.members.Add (n2);
@@ -47,6 +49,7 @@ public class Game  {
 		n3.mp = 0;
 		n3.maxHp = 4;
 		n3.maxMp = 0;
+		n3.position = 25;
 
 		NPC n4 = new NPC ();
 		n4.name = "Archer";
@@ -54,6 +57,7 @@ public class Game  {
 		n4.mp = 0;
 		n4.maxHp = 3;
 		n4.maxMp = 0;
+		n4.position = 9;
 
 		p2.party.members.Add (n3);
 		p2.party.members.Add (n4);
