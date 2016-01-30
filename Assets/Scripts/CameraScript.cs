@@ -65,7 +65,7 @@ public class CameraScript : MonoBehaviour {
 
 			int x = (int) hit.transform.position.x - 1 ;
 			int y = (int) hit.transform.position.y - 1;
-			pos = ((y*32) + x)-32-1;
+			pos = ((y*32) + x);
 		}
 
 		return pos;
