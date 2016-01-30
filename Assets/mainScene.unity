@@ -51220,6 +51220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c08af7e7a8e03045a89f9b94d42a184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myMain: {fileID: 1471653249}
   camScript: {fileID: 2040749715}
   myTiles: {fileID: 734010194}
 --- !u!1 &1535315538

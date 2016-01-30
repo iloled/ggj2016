@@ -8,7 +8,7 @@ public class Main : MonoBehaviour {
 	public Text playerName;
 	public Text partyInfo;
 
-	Game g;
+	public Game g;
 
 	// Use this for initialization
 	void Start () {

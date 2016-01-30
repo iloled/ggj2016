@@ -88,7 +88,7 @@ public class NPC  {
 				    (position +  j + i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position + j + i * boardSize))) {
 					result.Add (position + j + i * boardSize);
-					Debug.Log(position + j + i * boardSize);
+//					Debug.Log(position + j + i * boardSize);
 					}
 
 				if ((position -  j + i * boardSize)>=landmark+i * boardSize &&
@@ -97,7 +97,7 @@ public class NPC  {
 				    (position -  j + i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position - j + i * boardSize)) ) {
 					result.Add (position - j + i * boardSize);
-					Debug.Log(+position - j + i * boardSize);
+	//				Debug.Log(+position - j + i * boardSize);
 				}
 
 				if ((position +  j - i * boardSize)>=landmark-i * boardSize &&
@@ -106,7 +106,7 @@ public class NPC  {
 				    (position +  j - i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position + j - i * boardSize))) {
 					result.Add (position + j - i * boardSize);
-					Debug.Log(position + j - i * boardSize);
+					//Debug.Log(position + j - i * boardSize);
 				}
 
 				if ((position -  j - i * boardSize)>=landmark-i * boardSize &&
@@ -115,7 +115,7 @@ public class NPC  {
 				    (position -  j - i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position - j - i * boardSize)) ) {
 					result.Add (position - j - i * boardSize);
-					Debug.Log(position - j - i * boardSize);
+					//Debug.Log(position - j - i * boardSize);
 				}
 
 				}

@@ -60,14 +60,16 @@ public class CameraScript : MonoBehaviour {
 		return hasHitted;
 	}
 
-	public string GetTag()
+	public Transform GetTransform()
 	{
 			if (Physics.Raycast (ray, out hit)) {
-				return hit.transform.tag;
+				return hit.transform;
 			}
 			else
-				return "void";
+				return null;
 	}
+
+
 	
 	public int GetPostionTile()
 	{
