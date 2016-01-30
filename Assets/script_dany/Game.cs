@@ -147,8 +147,8 @@ public class Game  {
 	private void updateRessource(){
 		currentPlayer.ressource.addAllRessource ();
 		gold.text = "Gold : " + currentPlayer.ressource.gold;
-		blood.text = "Gold : " + currentPlayer.ressource.blood;
-		holyWater.text = "Gold : " + currentPlayer.ressource.holyWater;
+		blood.text = "Blood : " + currentPlayer.ressource.blood;
+		holyWater.text = "Holy Water : " + currentPlayer.ressource.holyWater;
 
 	}
 
