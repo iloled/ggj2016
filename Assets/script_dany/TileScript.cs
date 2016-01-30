@@ -4,7 +4,7 @@ using System.Collections;
 public class TileScript : MonoBehaviour {
 
 	[SerializeField]
-	Transform[] tileTransform;
+	public Transform[] tileTransform;
 
 	[SerializeField]
 	SpriteRenderer[] tileSprites;
@@ -27,6 +27,13 @@ public class TileScript : MonoBehaviour {
 				}
 		}
 	}
+
+	public Transform GetTileTransform(int id)
+	{
+		return tileTransform [id];
+	}
+
+
 	
 	public void ChangeSprite(int[] spriteID, int color)
 	{
@@ -35,7 +42,7 @@ public class TileScript : MonoBehaviour {
 		}
 	}
 
-	public void ClearSprit()
+	public void ClearSprite()
 	{
 		foreach (var elem in tileSprites) {
 			elem.sprite = spriteList[0];
