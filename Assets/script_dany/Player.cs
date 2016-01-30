@@ -3,15 +3,17 @@ using System.Collections;
 
 public class Player {
 
-	public int position;
 	public string name;
 	public int actionNumber;
 
 	public Party party;
+	public Ressource ressource;
 
 	public Player()
 	{
 		party = new Party ();
+		ressource = new Ressource ();
+
 	}
 
 	public void move()
@@ -19,5 +21,10 @@ public class Player {
 		Debug.Log (this.name + "Moving");
 		actionNumber--;
 	}
+
+	public void addRandomRessources(){
+		ressource.addRandomRessource();
+	}
+
 
 }
