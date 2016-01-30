@@ -12,6 +12,8 @@ public class MoveNPC : MonoBehaviour {
 	[SerializeField]
 	TileScript myTiles;
 
+
+
 	// Use this for initialization
 	void Start () {
 	
