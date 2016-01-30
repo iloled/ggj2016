@@ -29,12 +29,31 @@ public class NPC  {
 	}
 
 
-	public NPC(){
-		hp = 10;
+	public NPC(type typeNPC){
+		switch (typeNPC) {
+		case type.athelte:
+						hp = 20;
+						break;
+
+		case type.schoolboy:
+						hp = 5;
+						break;
+
+		case type.geek:
+						hp = 10;
+						break;
+
+		default:
+				hp = 10;
+				break;
+		}
+
 		mp = 1;
 		pAttack = 1;
-		range = 2;
+		range = 1;
 		camp = player.neutral;
+		typePerson = typeNPC;
+
 	}
 		
 	// deplace le NPC
@@ -63,7 +82,7 @@ public class NPC  {
 				+hp+" hp\n"
 				+mp+" mp\n"
 				+pAttack+" attack\n"
-				+"side: "+camp);
+				+"type: "+typePerson);
 	}
 
 }
