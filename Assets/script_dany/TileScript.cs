@@ -33,8 +33,6 @@ public class TileScript : MonoBehaviour {
 		return tileTransform [id];
 	}
 
-
-	
 	public void ChangeSprite(int[] spriteID, int color)
 	{
 		foreach (var elem in spriteID) {

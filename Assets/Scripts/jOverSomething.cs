@@ -26,7 +26,6 @@ public class jOverSomething : MonoBehaviour {
 	void Update () {
 
 		if (camScript.checkHit ()) {
-			Debug.Log ("hit");
 			if (camScript.GetTag () == "npc") {
 				panelInfo.SetActive (true);
 			} else

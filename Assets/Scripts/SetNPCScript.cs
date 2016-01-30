@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SetNPCScript : MonoBehaviour {
 	
@@ -9,11 +10,14 @@ public class SetNPCScript : MonoBehaviour {
 	[SerializeField]
 	Transform[] NPCTransform;
 
-	NPC[] npcs = new NPC[5];
+	List<NPC> npcs = new List<NPC>();
+
+
+
 	// Use this for initialization
 	void Start () {
 
-		npcs [0] = new NPC (NPC.type.athelte);
+		/*npcs [0] = new NPC (NPC.type.athelte);
 		npcs [0].position = 15;
 
 		npcs [1] = new NPC (NPC.type.geek);
@@ -26,22 +30,25 @@ public class SetNPCScript : MonoBehaviour {
 		npcs [3].position = 802;
 
 		npcs [4] = new NPC (NPC.type.athelte);
-		npcs [4].position = 201;
+		npcs [4].position = 201;*/
 
 
 
 	}
 
-	public void PlaceObjectNPC(NPC[] npc)
+	public void PlaceObjectNPC(List<NPC> npc)
 	{
 		int i = 0;
-
+		//Debug.Log("ok");
 		foreach (var elem in npc) {
-			var tiletransform = tiles.GetTileTransform(elem.position);
 
+
+			var tiletransform = tiles.GetTileTransform(elem.position);
+			Debug.Log("ok");
 			NPCTransform[i].position = new Vector3(tiletransform.position.x, 
 			                                       tiletransform.position.y,
 			                                       tiletransform.position.z);
+			Board.tiles[elem.position].npc = elem; 
 			++i;
 		}
 
@@ -52,7 +59,7 @@ public class SetNPCScript : MonoBehaviour {
 	
 		if(Input.GetKeyDown(KeyCode.A))
 		{
-			PlaceObjectNPC (npcs);
+			//PlaceObjectNPC (npcs);
 		}
 	}
 }
