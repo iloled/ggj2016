@@ -26,7 +26,8 @@ public class jOverSomething : MonoBehaviour {
 		if (camScript.checkHit ()) {
 			if (camScript.GetTransform ().tag == "npc") {
 				panelInfo.SetActive (true);
-				descText.text = "blabla";
+				descText.text = Board.tiles[camScript.GetPostionTile()].npc.getDescription();;
+				//
 			} else
 			{
 				panelInfo.SetActive (false);
