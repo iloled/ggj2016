@@ -3,13 +3,19 @@ using System.Collections;
 
 public class AttackAction : Action {
 
-	private int position;
-	private NPC attacker;
-	private NPC target;
+	public NPC attacker;
+	public NPC target;
+
+	public const string ATTACK = "Attack";
+
+	public AttackAction()
+	{
+		base.name = ATTACK;
+	}
 
 	public AttackAction (Player p, NPC attacker, NPC target)
 	{
-		base.name = "Attack";
+		base.name = ATTACK;
 		base.p = p;
 		this.attacker = attacker;
 		this.target = target;

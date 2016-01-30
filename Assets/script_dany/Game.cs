@@ -32,18 +32,13 @@ public class Game  {
 
 		p.party.addNPC  (m);
 
-		NPC n1 = new NPC ();
-		n1.name = "Warrior";
-		n1.hp = 10;
-		n1.mp = 4;
-		n1.maxHp = 10;
-		n1.maxMp = 4;
+		NPC n1 = new Warrior ();
+
 		n1.position = 5;
 		n1.position = 15;
 		n1.moveRange = 1;
 
-		NPC n2 = new NPC ();
-		n2.name = "Mage";
+		NPC n2 = new Mage ();
 		n2.hp = 6;
 		n2.mp = 4;
 		n2.maxHp = 6;
@@ -57,8 +52,7 @@ public class Game  {
 
 		p2.party = new Party (p2);
 
-		NPC n3 = new NPC ();
-		n3.name = "Thief";
+		NPC n3 = new Thief ();
 		n3.hp = 4;
 		n3.mp = 0;
 		n3.maxHp = 4;
@@ -67,8 +61,7 @@ public class Game  {
 		n3.position = 430;
 		n3.moveRange = 3;
 
-		NPC n4 = new NPC ();
-		n4.name = "Archer";
+		NPC n4 = new Archer ();
 		n4.hp = 3;
 		n4.mp = 0;
 		n4.maxHp = 3;
@@ -173,9 +166,42 @@ public class Game  {
 
 	public void moveCurrentPlayer()
 	{
+		useAction (MoveAction.MOVE, currentPlayer.party.members[0], null, 0);
+		/*
 		Action a = new Action (currentPlayer);
 		a.execute ();
 		updateActionText ();
+		if (currentPlayer.actionNumber == 0) 
+		{
+			playNextPhase ();
+		}*/
+	}
+
+	private AttackAction attack = new AttackAction ();
+	private MoveAction move = new MoveAction ();
+
+	public void useAction(string actionName, NPC user, NPC target, int position)
+	{
+		// Use action
+
+		switch (actionName) {
+
+		case MoveAction.MOVE:
+			move.npc = user;
+			move.execute ();
+			break;
+		case ConvertAction.Convert:
+			break;
+		case AttackAction.ATTACK:
+			attack.attacker = user;
+			attack.target = target;
+			attack.execute ();
+			break;
+		}
+
+		currentPlayer.actionNumber--;
+		updateActionText ();
+
 		if (currentPlayer.actionNumber == 0) 
 		{
 			playNextPhase ();

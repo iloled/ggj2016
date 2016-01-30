@@ -24,6 +24,9 @@ public class NPC  {
 	public int moveRange;		// la porté du déplacement du NPC
 
 	public Party party;
+	public List<string> actions = new List<string>();
+
+	private AttackAction attack = new AttackAction();
 
 	public NPC(){
 		hp = maxHp =  1;
@@ -122,12 +125,7 @@ public class NPC  {
 
 			}
 		return result;
-	}
-
-	//le NPC attaque
-	public int attack(){
-		return pAttack;
-	}
+	}		
 
 	//le NPC est attaqué
 	public void isAttacked(int damage){
@@ -166,6 +164,19 @@ public class NPC  {
 	public List<string> actionList()
 	{
 		return null;
+	}
+
+	public void useAction(string actionName) 
+	{
+		switch (actionName) {
+			case MoveAction.MOVE:
+				break;
+			case ConvertAction.Convert:
+				break;
+			case AttackAction.ATTACK:
+				break;
+		 
+		}
 	}
 
 }
