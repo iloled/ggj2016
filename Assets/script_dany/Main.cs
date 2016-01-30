@@ -7,7 +7,7 @@ public class Main : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("ntm ian");
+		
 		g = new Game ();
 		g.startGame ();
 	}

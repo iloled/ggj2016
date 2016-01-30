@@ -7,13 +7,11 @@ public class Game  {
 
 	Player p = new Player();
 	Player p2 = new Player();
+	Player p3 = new Player();
 	Player currentPlayer;
+	Board b = new Board();
 
 	private bool firstTurn = true;
-	// Use this for initialization
-	void Start () {
-	
-	}
 
 	public void startGame()
 	{
@@ -31,6 +29,10 @@ public class Game  {
 			
 			if (currentPlayer == p) {
 				currentPlayer = p2;
+			} else if (currentPlayer == p2) {
+				
+				currentPlayer = p3;
+				playNeutralPhase ();
 			} else {
 				currentPlayer = p;
 			}
@@ -42,22 +44,21 @@ public class Game  {
 		currentPlayer.actionNumber = ACTION_PER_TURN;
 	}
 
-	public void moveCurrentPlayer()
+	private void playNeutralPhase()
 	{
-		playAction (null);
+		Debug.Log ("Neutral phase");
+		playNextPhase ();
 	}
 
-	public void playAction(Action a)
+	public void moveCurrentPlayer()
 	{
-		currentPlayer.move();
+		Action a = new Action (currentPlayer);
+		a.execute ();
 		if (currentPlayer.actionNumber == 0) 
 		{
 			playNextPhase ();
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+
 }

@@ -3,8 +3,16 @@ using System.Collections;
 
 public class Player {
 
+	public int position;
 	public string name;
 	public int actionNumber;
+
+	public Party party;
+
+	public Player()
+	{
+		party = new Party ();
+	}
 
 	public void move()
 	{
@@ -12,13 +20,4 @@ public class Player {
 		actionNumber--;
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
