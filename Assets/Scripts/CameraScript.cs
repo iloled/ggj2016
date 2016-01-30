@@ -38,6 +38,9 @@ public class CameraScript : MonoBehaviour {
 		{
 			transform.Translate(new Vector3(0,speed * Time.deltaTime,0));
 		}
+
+
+
 	}
 
 	public bool checkHit()
@@ -56,6 +59,15 @@ public class CameraScript : MonoBehaviour {
 		} 
 		return hasHitted;
 	}
+
+	public string GetTag()
+	{
+			if (Physics.Raycast (ray, out hit)) {
+				return hit.transform.tag;
+			}
+			else
+				return "void";
+	}
 	
 	public int GetPostionTile()
 	{
@@ -63,12 +75,13 @@ public class CameraScript : MonoBehaviour {
 		
 		if (Physics.Raycast (ray, out hit)) {
 
-			int x = (int) hit.transform.position.x - 1 ;
-			int y = (int) hit.transform.position.y - 1;
-			pos = ((y*32) + x);
-		}
+			int x = (int)hit.transform.position.x - 1;
+			int y = (int)hit.transform.position.y - 1;
+			pos = ((y * 32) + x);
 
-		return pos;
+			return pos;
+		} else
+			return 0;
 	}
 }
 	

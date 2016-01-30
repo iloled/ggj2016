@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using System.Collections.Generic;
 public class Game  {
 
 	static int ACTION_PER_TURN = 3; 
@@ -11,6 +11,8 @@ public class Game  {
 	Player p3 = new Player();
 	Player currentPlayer;
 	Board b = new Board();
+
+	List<NPC> listNPC = new List<NPC> ();
 
 	public Text actionText;
 	public Text playerName;
@@ -29,6 +31,8 @@ public class Game  {
 		n1.maxHp = 10;
 		n1.maxMp = 4;
 		n1.position = 5;
+		n1.position = 15;
+		n1.moveRange = 1;
 
 		NPC n2 = new NPC ();
 		n2.name = "Mage";
@@ -37,6 +41,8 @@ public class Game  {
 		n2.maxHp = 6;
 		n2.maxMp = 4;
 		n2.position = 10;
+		n2.position = 600;
+		n2.moveRange = 2;
 
 		p.party.members.Add (n1);
 		p.party.members.Add (n2);
@@ -50,6 +56,8 @@ public class Game  {
 		n3.maxHp = 4;
 		n3.maxMp = 0;
 		n3.position = 25;
+		n3.position = 430;
+		n3.moveRange = 3;
 
 		NPC n4 = new NPC ();
 		n4.name = "Archer";
@@ -58,10 +66,17 @@ public class Game  {
 		n4.maxHp = 3;
 		n4.maxMp = 0;
 		n4.position = 9;
+		n4.position = 100;
+		n4.moveRange = 4;
 
 		p2.party.members.Add (n3);
 		p2.party.members.Add (n4);
-	}	
+
+		listNPC.Add (n1);
+		listNPC.Add (n2);
+		listNPC.Add (n3);
+		listNPC.Add (n4);
+	}
 
 	public void initText( Text action, Text playerName, Text partyInfo )
 	{
@@ -140,6 +155,12 @@ public class Game  {
 			playNextPhase ();
 		}
 	}
+
+	public void initBoard()
+	{
+		b.init (listNPC);
+	}
+
 
 
 }
