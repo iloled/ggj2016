@@ -7,7 +7,7 @@ public class main : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		npc= new NPC();
+		npc= new NPC(NPC.type.schoolboy);
 		npc.showStat();
 		npc.isAttacked (7);
 		npc.convert(NPC.player.player1);
