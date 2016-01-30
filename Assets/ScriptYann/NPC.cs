@@ -23,6 +23,8 @@ public class NPC  {
 	public type typePerson; 	// le type du npc
 	public int moveRange;		// la porté du déplacement du NPC
 
+	public Party party;
+
 	public NPC(){
 		hp = maxHp =  1;
 		mp = maxMp = 1;
@@ -144,6 +146,26 @@ public class NPC  {
 				+mp+" mp\n"
 				+pAttack+" attack\n"
 				+"type: "+typePerson+"\ncase :"+position);
+	}
+
+	public string getDescription()
+	{
+		var text = "";
+		text += name + "\n";
+		text += "HP : " +hp + "/"+maxHp+"\n";
+		text += "MP : " +mp + "/" + maxMp+ "\n\n";
+		return text;
+	}
+
+
+	public void killNPC()
+	{
+		this.party.removeNPC (this);
+	}
+
+	public List<string> actionList()
+	{
+		return null;
 	}
 
 }

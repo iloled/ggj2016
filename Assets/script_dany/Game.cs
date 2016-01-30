@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class Game  {
 
-	static int ACTION_PER_TURN = 2; 
+	static int ACTION_PER_TURN = 3; 
 
 	Player p = new Player();
 	Player p2 = new Player();
@@ -24,12 +24,17 @@ public class Game  {
 	{
 		p.party = new Party ();
 
+		var m = new Messiah ();
+
+		p.party.members.Add (m);
+
 		NPC n1 = new NPC ();
 		n1.name = "Warrior";
 		n1.hp = 10;
 		n1.mp = 4;
 		n1.maxHp = 10;
 		n1.maxMp = 4;
+		n1.position = 5;
 		n1.position = 15;
 		n1.moveRange = 1;
 
@@ -39,6 +44,7 @@ public class Game  {
 		n2.mp = 4;
 		n2.maxHp = 6;
 		n2.maxMp = 4;
+		n2.position = 10;
 		n2.position = 600;
 		n2.moveRange = 2;
 
@@ -53,6 +59,7 @@ public class Game  {
 		n3.mp = 0;
 		n3.maxHp = 4;
 		n3.maxMp = 0;
+		n3.position = 25;
 		n3.position = 430;
 		n3.moveRange = 3;
 
@@ -62,8 +69,13 @@ public class Game  {
 		n4.mp = 0;
 		n4.maxHp = 3;
 		n4.maxMp = 0;
+		n4.position = 9;
 		n4.position = 100;
 		n4.moveRange = 4;
+
+		var m2 = new Messiah ();
+
+		p2.party.members.Add (m2);
 
 		p2.party.members.Add (n3);
 		p2.party.members.Add (n4);
@@ -114,8 +126,6 @@ public class Game  {
 		updatePartyList ();
 		playerName.text = currentPlayer.name;
 
-
-
 	}
 
 	private void updateActionText()
@@ -130,9 +140,7 @@ public class Game  {
 		string text = "";
 
 		foreach (NPC n in p.members) {
-			text += n.name + "\n";
-			text += n.hp + "/"+n.maxHp+"\n";
-			text += n.mp + "/" + n.maxMp+ "\n\n";
+			text += n.getDescription ();
 		}
 		partyInfo.text = text;
 	}

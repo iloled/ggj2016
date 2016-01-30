@@ -4,6 +4,7 @@ using System.Collections;
 public class Action {
 
 	protected Player p;
+	protected string name;
 
 	public Action()
 	{
