@@ -17,6 +17,10 @@ public class Game  {
 	public Text actionText;
 	public Text playerName;
 	public Text partyInfo;
+	public Text gold;
+	public Text blood;
+	public Text holyWater;
+
 
 	private bool firstTurn = true;
 
@@ -79,11 +83,14 @@ public class Game  {
 		listNPC.Add (n4);
 	}
 
-	public void initText( Text action, Text playerName, Text partyInfo )
+	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
 	{
 		actionText = action;
 		this.playerName = playerName;
 		this.partyInfo = partyInfo;
+		this.gold = gold;
+		this.blood = blood;
+		this.holyWater = holyWater;
 	}
 
 	public void startGame()
@@ -101,20 +108,24 @@ public class Game  {
 			
 			if (currentPlayer == p) {
 				currentPlayer = p2;
+				updateRessource ();
 			} else if (currentPlayer == p2) {
 				
 				currentPlayer = p3;
 				playNeutralPhase ();
 			} else {
 				currentPlayer = p;
+				updateRessource ();
 			}
 		} else {
 			firstTurn = false;
+			updateRessource ();
 		}
 
 
 		Debug.Log ("Phase : " + currentPlayer.name);
 		currentPlayer.actionNumber = ACTION_PER_TURN;
+
 		updateActionText ();
 		updatePartyList ();
 		playerName.text = currentPlayer.name;
@@ -124,6 +135,14 @@ public class Game  {
 	private void updateActionText()
 	{
 		actionText.text = "Remaining actions : " + currentPlayer.actionNumber;
+	}
+
+	private void updateRessource(){
+		currentPlayer.ressource.addAllRessource ();
+		gold.text = "Gold : " + currentPlayer.ressource.gold;
+		blood.text = "Blood : " + currentPlayer.ressource.blood;
+		holyWater.text = "Holy Water : " + currentPlayer.ressource.holyWater;
+
 	}
 
 	private void updatePartyList()

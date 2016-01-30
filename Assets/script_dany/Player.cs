@@ -21,10 +21,6 @@ public class Player {
 		Debug.Log (this.name + "Moving");
 		actionNumber--;
 	}
-
-	public void addRandomRessources(){
-		ressource.addRandomRessource();
-	}
-
+		
 
 }
