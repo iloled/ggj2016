@@ -24,6 +24,10 @@ public class Game  {
 	{
 		p.party = new Party ();
 
+		var m = new Messiah ();
+
+		p.party.members.Add (m);
+
 		NPC n1 = new NPC ();
 		n1.name = "Warrior";
 		n1.hp = 10;
@@ -68,6 +72,10 @@ public class Game  {
 		n4.position = 9;
 		n4.position = 100;
 		n4.moveRange = 4;
+
+		var m2 = new Messiah ();
+
+		p2.party.members.Add (m2);
 
 		p2.party.members.Add (n3);
 		p2.party.members.Add (n4);

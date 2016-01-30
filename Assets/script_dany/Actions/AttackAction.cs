@@ -17,5 +17,7 @@ public class AttackAction : Action {
 	protected override void behaviour()
 	{
 		target.hp -= attacker.pAttack;
+		if (attacker.hp <= 0)
+			attacker.killNPC ();
 	}
 }
