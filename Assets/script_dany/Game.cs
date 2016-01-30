@@ -114,6 +114,8 @@ public class Game  {
 		updatePartyList ();
 		playerName.text = currentPlayer.name;
 
+
+
 	}
 
 	private void updateActionText()
@@ -138,6 +140,7 @@ public class Game  {
 	private void playNeutralPhase()
 	{
 		Debug.Log ("Neutral phase");
+
 		playNextPhase ();
 	}
 
