@@ -21,20 +21,12 @@ public class CameraScript : MonoBehaviour {
 	void Update () {
 		ray = myCamera.ScreenPointToRay(Input.mousePosition);
 
-
-		if(Input.GetKey(KeyCode.RightArrow))
-		{
-			transform.Translate(new Vector3(speed * Time.deltaTime,0,0));
-		}
-		if(Input.GetKey(KeyCode.LeftArrow))
-		{
-			transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
-		}
-		if(Input.GetKey(KeyCode.DownArrow))
+		
+		if(Input.GetKey(KeyCode.DownArrow) && myCamera.transform.position.y > 9.5f)
 		{
 			transform.Translate(new Vector3(0,-speed * Time.deltaTime,0));
 		}
-		if(Input.GetKey(KeyCode.UpArrow))
+		if(Input.GetKey(KeyCode.UpArrow) && myCamera.transform.position.y < 23.0f)
 		{
 			transform.Translate(new Vector3(0,speed * Time.deltaTime,0));
 		}
