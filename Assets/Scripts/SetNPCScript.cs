@@ -44,7 +44,7 @@ public class SetNPCScript : MonoBehaviour {
 
 
 			var tiletransform = tiles.GetTileTransform(elem.position);
-			Debug.Log("ok");
+
 			NPCTransform[i].position = new Vector3(tiletransform.position.x, 
 			                                       tiletransform.position.y,
 			                                       tiletransform.position.z);
