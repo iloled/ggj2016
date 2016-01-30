@@ -12,10 +12,7 @@ public class NPC  {
 	public int pAttack;			// les points d'attaque
 	public int range;			// la portée des attaques
 	public player camp;			// le npc peut etre neutre ou sous le contrôle d'un joueur
-	public Vector2 position;	// la position du npc
-	public type typePerson;		// le type du NPC
-
-
+	public int position;	// la position du npc			
 
 	// Use this for initialization
 
@@ -53,12 +50,12 @@ public class NPC  {
 		pAttack = 1;
 		range = 1;
 		camp = player.neutral;
-		typePerson = typeNPC;
+		//	typePerson = typeNPC;
 
 	}
 		
 	// deplace le NPC
-	public void moveNPC(Vector2 newPosition){
+	public void moveNPC(int newPosition){
 		position = newPosition;
 	}
 
