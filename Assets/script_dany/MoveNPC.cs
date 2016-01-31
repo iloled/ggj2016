@@ -44,6 +44,18 @@ public class MoveNPC : MonoBehaviour {
 	[SerializeField]
 	GameObject archerButton;
 
+	[SerializeField]
+	Text mageStats;
+
+	[SerializeField]
+	Text warriorStats;
+
+	[SerializeField]
+	Text thiefStats;
+
+	[SerializeField]
+	Text archerStats;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -111,6 +123,15 @@ public class MoveNPC : MonoBehaviour {
 		currentNpc = null;
 	}
 
+
+	public void archerRitual()
+	{
+		myMain.g.useAction (ConvertAction.CONVERT_ARCHER, currentNpc, ritualTarget, 0);
+		ritualPanel.SetActive (false);
+		ritualTarget = null;
+		currentNpc = null;
+	}
+
 	void Update () {
 	
 		if (Input.GetKeyUp(KeyCode.Mouse0) && camScript.checkHit ()) {
@@ -150,6 +171,11 @@ public class MoveNPC : MonoBehaviour {
 					warriorButton.SetActive (currentNpc.party.p.hasEnoughResourceForWarrior());
 					thiefButton.SetActive (currentNpc.party.p.hasEnoughResourceForThief());
 					archerButton.SetActive (currentNpc.party.p.hasEnoughResourceForArcher());
+
+					mageStats.text = currentNpc.party.p.getMageStats (ritualTarget);
+					warriorStats.text = currentNpc.party.p.getWarriorStats (ritualTarget);
+					archerStats.text = currentNpc.party.p.getArcherStats (ritualTarget);
+					thiefStats.text = currentNpc.party.p.getThiefStats (ritualTarget);
 
 				}
 

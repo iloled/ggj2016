@@ -57,6 +57,12 @@ public class Player {
 		return ressource.blood >= 1 && ressource.holyWater>=2;
 	}
 
+	public void removeArcherResource()
+	{
+		ressource.blood --;
+		ressource.holyWater -=2;
+	}
+
 	public void convertArcher(NPC npc){
 		if ( ressource.blood >= 1 && ressource.holyWater>=2) {
 			ressource.blood --;
@@ -74,6 +80,11 @@ public class Player {
 		return ressource.blood >= 3;
 	}
 
+	public void removeMageResource()
+	{
+		ressource.blood -= 3;
+	}
+
 	public void convertMage(NPC npc){
 		if (ressource.blood >= 3) {
 			ressource.blood -= 3;
@@ -88,6 +99,49 @@ public class Player {
 	public bool hasEnoughResourceForThief()
 	{
 		return ressource.gold >= 2 && ressource.blood>=2;
+	}
+
+
+	public void removeThiefResource()
+	{
+		ressource.gold -= 2;
+		ressource.blood -= 2;
+	}
+
+	public string getMageStats( NPC target )
+	{
+		var text = ""; 
+		text += "HP : "+ (target.hp + 2 ) + "\n";
+		text += "ATK : 4\n";
+		text += "RANGE : 2\n";
+		return text;
+	}
+
+	public string getWarriorStats( NPC target )
+	{
+		var text = ""; 
+		text += "HP : "+ (target.hp + 10 ) + "\n";
+		text += "ATK : 5\n";
+		text += "MOVE : 3\n";
+		return text;
+	}
+
+	public string getThiefStats( NPC target )
+	{
+		var text = ""; 
+		text += "HP : "+ (target.hp + 5 ) + "\n";
+		text += "ATK : 3\n";
+		text += "MOVE : 4\n";
+		return text;
+	}
+
+	public string getArcherStats( NPC target )
+	{
+		var text = ""; 
+		text += "HP : "+ (target.hp + 3 ) + "\n";
+		text += "ATK : 2\n";
+		text += "RANGE : 3\n";
+		return text;
 	}
 
 	public void convertThief(NPC npc){
