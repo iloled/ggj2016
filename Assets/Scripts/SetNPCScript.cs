@@ -24,6 +24,8 @@ public class SetNPCScript : MonoBehaviour {
 		}
 	}
 
+	int testI = 0;
+
 	List<NPC> npcs = new List<NPC>();
 
 	// Use this for initialization
@@ -55,12 +57,17 @@ public class SetNPCScript : MonoBehaviour {
 
 	}
 
-	public void createNPC(Vector3 pos, Sprite sprite)
+	public void createNPC(int idTile, Sprite sprite)
 	{
-		Transform newNPC = GameObject.Instantiate(prefabNPC, pos, Quaternion.identity) as Transform;
+		var x = idTile%32;
+		var y = idTile/32;
+
+		Transform newNPC = GameObject.Instantiate(prefabNPC, 
+		                                          new Vector3(1+x, 1+y, 0.0f), 
+		                                          Quaternion.identity) as Transform;
 
 		Debug.Log ("new NPCCC : " + newNPC.name);
-
+		newNPC.parent = this.gameObject.transform;
 		SpriteRenderer srender = newNPC.transform.GetComponent<SpriteRenderer> ();
 		srender.sprite = sprite;
 	}
@@ -68,15 +75,11 @@ public class SetNPCScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if(Input.GetKeyDown(KeyCode.A))
+		if(Input.GetKeyDown(KeyCode.F12))
 		{
 			int randID = Random.Range(0,5);
-			float randX = Random.Range(1,33);
-			float randY = Random.Range(1,33);
-
-			Debug.Log ( randX + " " + randY + " " + randID);
-
-			createNPC (new Vector3 (randX, randY, -0.1f), neutralSpriteList[randID]);
+			createNPC (testI, neutralSpriteList[randID]);
+			++testI;
 		}
 	}
 }
