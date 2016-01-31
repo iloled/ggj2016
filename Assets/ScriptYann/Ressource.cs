@@ -28,9 +28,23 @@ public class Ressource   {
 	}
 
 	public void addAllRessource(){
-		blood ++;
-		gold ++;
-		holyWater ++;
+
+		for (int i = 0; i < 3; i++) {
+			var myRdm = Random.Range(0, 3);
+			switch(myRdm)
+			{
+			case 0:
+				blood ++;
+				break;
+			case 1:
+				gold ++;
+				break;
+			case 2:
+				holyWater ++;
+				break;
+			}
+		}
+
 	}
 		
 

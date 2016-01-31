@@ -37,7 +37,7 @@ public class Game  {
 
 		n1.position = 5;
 		n1.position = 15;
-		n1.moveRange = 10;
+		n1.moveRange = 32;
 		n1.pAttack = 100;
 
 		NPC n2 = new Mage ();

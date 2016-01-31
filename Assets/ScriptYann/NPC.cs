@@ -92,7 +92,8 @@ public class NPC  {
 					(position +  j + i * boardSize)<boardSize*boardSize &&
 				    (position +  j + i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position + j + i * boardSize))) {
-					result.Add (position + j + i * boardSize);
+					if(Board.tiles[position + j + i * boardSize].npc == null && Board.tiles[position + j + i * boardSize].walkable)
+						result.Add (position + j + i * boardSize);
 //					Debug.Log(position + j + i * boardSize);
 					}
 
@@ -101,7 +102,8 @@ public class NPC  {
 				    (position -  j + i * boardSize)<boardSize*boardSize &&
 				    (position -  j + i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position - j + i * boardSize)) ) {
-					result.Add (position - j + i * boardSize);
+					if(Board.tiles[position - j + i * boardSize].npc == null && Board.tiles[position - j + i * boardSize].walkable)
+						result.Add (position - j + i * boardSize);
 	//				Debug.Log(+position - j + i * boardSize);
 				}
 
@@ -110,7 +112,8 @@ public class NPC  {
 				    (position +  j - i * boardSize)<boardSize*boardSize &&
 				    (position +  j - i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position + j - i * boardSize))) {
-					result.Add (position + j - i * boardSize);
+					if(Board.tiles[position + j - i * boardSize].npc == null && Board.tiles[position + j - i * boardSize].walkable)
+						result.Add (position + j - i * boardSize);
 					//Debug.Log(position + j - i * boardSize);
 				}
 
@@ -119,7 +122,9 @@ public class NPC  {
 				    (position -  j - i * boardSize)<boardSize*boardSize &&
 				    (position -  j - i * boardSize)>=0 &&
 					!result.Exists(element=>element==(position - j - i * boardSize)) ) {
-					result.Add (position - j - i * boardSize);
+
+					if(Board.tiles[position - j - i * boardSize].npc == null && Board.tiles[position - j - i * boardSize].walkable)
+					   result.Add (position - j - i * boardSize);
 					//Debug.Log(position - j - i * boardSize);
 				}
 
