@@ -72,6 +72,14 @@ public class Game  {
 		n4.position = 100;
 		n4.moveRange = 4;
 
+		NPC neutre = new Archer ();
+		neutre.hp = 3;
+		neutre.mp = 0;
+		neutre.maxHp = 3;
+		neutre.maxMp = 0;
+		neutre.position = 13;
+		neutre.moveRange = 4;
+
 		var m2 = new Messiah ();
 		m2.position = 69;
 

@@ -37,6 +37,7 @@ public class MoveNPC : MonoBehaviour {
 	public NPC selectedNpc;
 
 	NPC currentNpc;
+	Player currentPlayer;
 	int[] movableTiles;
 	bool guiClicked = false;
 
@@ -127,6 +128,9 @@ public class MoveNPC : MonoBehaviour {
 				{
 
 					currentNpc = t.npc;
+					currentPlayer =currentNpc.party.p;
+					Debug.Log ("le nom du joueur "+currentPlayer.name);
+					currentPlayer.convertWarrior (currentNpc);
 					var actions = t.npc.actionList();
 
 	

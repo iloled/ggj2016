@@ -31,7 +31,6 @@ public class Ressource   {
 		blood ++;
 		gold ++;
 		holyWater ++;
-		Debug.Log ("gold = "+gold);
 	}
 		
 
