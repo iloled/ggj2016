@@ -20,7 +20,7 @@ public class Ressource   {
 
 	public void addAllRessource(){
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 15; i++) {
 			var myRdm = Random.Range(0, 3);
 			switch(myRdm)
 			{

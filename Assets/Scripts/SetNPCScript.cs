@@ -13,10 +13,13 @@ public class SetNPCScript : MonoBehaviour {
 	Transform[] NPCTransform;
 
 	[SerializeField]
-	Sprite[] spriteList;
+	public Sprite[] spriteListRed;
 
 	[SerializeField]
-	Sprite[] neutralSpriteList;
+	public Sprite[] spriteList;
+
+	[SerializeField]
+	public Sprite[] neutralSpriteList;
 
 	public Sprite[] SpriteList {
 		get {
@@ -57,19 +60,21 @@ public class SetNPCScript : MonoBehaviour {
 
 	}
 
-	public void createNPC(int idTile, Sprite sprite)
+	public SpriteRenderer createNPC(int idTile, Sprite sprite)
 	{
 		var x = idTile%32;
 		var y = idTile/32;
 
 		Transform newNPC = GameObject.Instantiate(prefabNPC, 
-		                                          new Vector3(1+x, 1+y, 0.0f), 
+		                                          new Vector3(1+x, 1+y, -0.1f), 
 		                                          Quaternion.identity) as Transform;
 
-		Debug.Log ("new NPCCC : " + newNPC.name);
+		newNPC.tag = "npc";
 		newNPC.parent = this.gameObject.transform;
 		SpriteRenderer srender = newNPC.transform.GetComponent<SpriteRenderer> ();
 		srender.sprite = sprite;
+		srender.tag = "npc";
+		return srender;
 	}
 	
 	// Update is called once per frame

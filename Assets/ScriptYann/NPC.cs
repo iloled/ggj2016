@@ -8,6 +8,10 @@ public class NPC  {
 	public enum type{athelte,schoolboy,geek};
 	public enum job{warrior, archer, mage};
 
+	public static SetNPCScript script = GameObject.Find("NPCS").gameObject.GetComponent<SetNPCScript>();
+	public SpriteRenderer renderer;
+
+	public Sprite sprite;
 	public string name;
 
 	public int hp;				// les points de vie
@@ -277,19 +281,13 @@ public class NPC  {
 	{
 		if(this.party != null)
 			this.party.removeNPC (this);
-		MonoBehaviour.Destroy (npcTransform.gameObject);
+		deleteSprite ();
 		Board.tiles [this.position].npc = null;
 
 
 
 	}
 
-	public void ChangeNPCSprite(Sprite newSprite)
-	{
-		var spriteSlot = this.npcTransform.gameObject.GetComponent<SpriteRenderer>();
-		spriteSlot.sprite = newSprite;
-
-	}
 
 	public List<string> actionList()
 	{
@@ -340,6 +338,16 @@ public class NPC  {
 		foreach (var skill in startTurnSkill) {
 			skill.execute ();
 		}
+	}
+
+	public void deleteSprite()
+	{
+		MonoBehaviour.Destroy (renderer.gameObject);
+	}
+
+	public void setSprite()
+	{
+		renderer = script.createNPC (position, sprite);
 	}
 
 }

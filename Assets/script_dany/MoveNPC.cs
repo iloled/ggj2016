@@ -56,10 +56,6 @@ public class MoveNPC : MonoBehaviour {
 	[SerializeField]
 	Text archerStats;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
 
 	public NPC selectedNpc;
 
@@ -123,6 +119,15 @@ public class MoveNPC : MonoBehaviour {
 		currentNpc = null;
 	}
 
+	public void mageRitual()
+	{
+		myMain.g.useAction (ConvertAction.CONVERT_MAGE, currentNpc, ritualTarget, 0);
+		ritualPanel.SetActive (false);
+		ritualTarget = null;
+		currentNpc = null;
+	}
+
+
 
 	public void archerRitual()
 	{
@@ -135,7 +140,6 @@ public class MoveNPC : MonoBehaviour {
 	void Update () {
 	
 		if (Input.GetKeyUp(KeyCode.Mouse0) && camScript.checkHit ()) {
-
 			if( guiClicked)
 			{
 				guiClicked = false;
@@ -187,6 +191,8 @@ public class MoveNPC : MonoBehaviour {
 				return;
 			}
 
+			Debug.Log (t.npc);
+
 			if(movableTiles != null && currentNpc != null){
 				foreach(var tilesPos in movableTiles)
 				{
@@ -197,7 +203,7 @@ public class MoveNPC : MonoBehaviour {
 						//currentNpc.position = tilesPos;
 						myMain.g.useAction(MoveAction.MOVE, currentNpc, null, tilesPos );
 						currentNpc = null;
-						myMain.g.initBoard();
+						//myMain.g.initBoard();
 
 						movableTiles = null;
 						myTiles.ClearSprite();
@@ -214,7 +220,6 @@ public class MoveNPC : MonoBehaviour {
 			}
 			else if(t.npc != null && t.npc.party != null &&  myMain.g.currentPlayer == t.npc.party.p )
 			{
-
 				currentNpc = t.npc;
 				currentPlayer =currentNpc.party.p;
 				var actions = t.npc.actionList();

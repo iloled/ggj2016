@@ -3,9 +3,19 @@ using System.Collections;
 
 public class Warrior : NPC {
 
-	public Warrior() : base()
+	public Warrior(Player p = null) : base()
 	{
+		SetNPCScript script = GameObject.Find("NPCS").gameObject.GetComponent<SetNPCScript>();
 		base.name = "Warrior";
+
+		if (p != null) {
+			p.party.addNPC (this);
+			if (p.name == "Player 1") {
+				sprite = script.spriteList [0];
+			} else {
+				sprite = script.spriteListRed [0];
+			}
+		}
 
 		// Action list
 
