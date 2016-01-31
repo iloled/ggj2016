@@ -25,70 +25,57 @@ public class Game  {
 
 	public void initPlayer()
 	{
+		SetNPCScript script = GameObject.Find("NPCS").gameObject.GetComponent<SetNPCScript>();
+
+		p.name = "Player 1";
+		p2.name = "Player 2";
 		p.party = new Party (p);
 
 		var neutral = new NormalGuy ();
 		neutral.position = 77;
+		neutral.sprite = script.neutralSpriteList [1];
 
-		var m = new Messiah ();
+		var neutral2 = new NormalGuy ();
+		neutral2.position = 89;
+		neutral2.sprite = script.neutralSpriteList [3];
+
+		var m = new Messiah (p);
 		m.position = 78;
 
 		p.party.addNPC  (m);
 
-		NPC n1 = new Warrior ();
+		NPC n1 = new Warrior (p);
 
 		n1.position = 5;
-		n1.position = 15;
+
 		n1.moveRange = 32;
 		n1.pAttack = 100;
 
-		NPC n2 = new Mage ();
-		n2.hp = 6;
-		n2.mp = 4;
-		n2.maxHp = 6;
-		n2.maxMp = 4;
-		n2.position = 10;
+		NPC n2 = new Mage (p);
+
 		n2.position = 600;
 		n2.moveRange = 2;
 
-		p.party.addNPC  (n1);
-		p.party.addNPC  (n2);
+
+		NPC n3 = new Warrior (p2);
+
+
+		n3.position = 15;
+		n3.moveRange = 32;
+		n3.pAttack = 100;
+
+		NPC n4 = new Mage (p2);
+
+		n2.position = 602;
+
 
 		p2.party = new Party (p2);
 
-		NPC n3 = new Thief ();
-		n3.hp = 4;
-		n3.mp = 0;
-		n3.maxHp = 4;
-		n3.maxMp = 0;
-		n3.position = 25;
-		n3.position = 430;
-		n3.moveRange = 3;
-
-		NPC n4 = new Archer ();
-		n4.hp = 3;
-		n4.mp = 0;
-		n4.maxHp = 3;
-		n4.maxMp = 0;
-		n4.position = 9;
-		n4.position = 100;
-		n4.moveRange = 4;
-
-		NPC neutre = new Archer ();
-		neutre.hp = 3;
-		neutre.mp = 0;
-		neutre.maxHp = 3;
-		neutre.maxMp = 0;
-		neutre.position = 13;
-		neutre.moveRange = 4;
-
-		var m2 = new Messiah ();
+		var m2 = new Messiah (p2);
 		m2.position = 69;
-
 		p2.party.addNPC (m2);
 
-		//p2.party.addNPC  (n3);
-		p2.party.addNPC  (n4);
+		//p2.party.addNPC  (n4);
 
 		//p2.party.addNPC  (neutral);
 
@@ -96,10 +83,16 @@ public class Game  {
 		listNPC.Add (m2);
 		listNPC.Add (n1);
 		listNPC.Add (n2);
-		//listNPC.Add (n3);
+		listNPC.Add (n3);
 		listNPC.Add (n4);
+		//listNPC.Add (n4);
 
 		listNPC.Add (neutral);
+		listNPC.Add (neutral2);
+
+		initBoard ();
+
+
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -115,8 +108,7 @@ public class Game  {
 	public void startGame()
 	{
 		Debug.Log ("Start game");
-		p.name = "Player 1";
-		p2.name = "Player 2";
+
 		currentPlayer = p;
 		playNextPhase();
 	}
@@ -223,7 +215,6 @@ public class Game  {
 			ritual.execute ();
 			updateTextResource ();
 			updatePartyList ();
-			initBoard ();
 			break;
 		case ConvertAction.CONVERT_ARCHER:
 			ritual.target = target;
@@ -231,15 +222,13 @@ public class Game  {
 			ritual.execute ();
 			updateTextResource ();
 			updatePartyList ();
-			initBoard ();
 			break;
 		case ConvertAction.CONVERT_MAGE:
 			ritual.target = target;
 			ritual.messiah = user;
-			ritual.execute ();
+			ritual.convertToMage ();
 			updateTextResource ();
 			updatePartyList ();
-			initBoard ();
 			break;
 		case ConvertAction.CONVERT_THIEF:
 			ritual.target = target;
@@ -247,12 +236,18 @@ public class Game  {
 			ritual.execute ();
 			updateTextResource ();
 			updatePartyList ();
-			initBoard ();
 			break;
 		case AttackAction.ATTACK:
+			Debug.Log ("attack");
 			attack.attacker = user;
 			attack.target = target;
 			attack.execute ();
+
+			if (target.party != null && target.party.isEmpty ()) {
+				Globals.WINNER = currentPlayer.name;
+				Application.LoadLevel ("gameOverScene");
+				Debug.Log ("mainScene");
+			}
 			break;
 		}
 
@@ -267,7 +262,13 @@ public class Game  {
 
 	public void initBoard()
 	{
-		b.init (listNPC);
+		SetNPCScript script = GameObject.Find("NPCS").gameObject.GetComponent<SetNPCScript>();
+		//b.init (listNPC);
+		foreach (var NPC in listNPC) {
+			NPC.setSprite ();
+			Board.tiles [NPC.position].npc = NPC;
+
+		}
 	}
 
 	public static void removeNPC( NPC npc)

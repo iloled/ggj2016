@@ -24,7 +24,9 @@ public class MoveAction : Action
 
 	protected override void behaviour()
 	{
+		npc.deleteSprite ();
 		npc.position = position;
+		npc.setSprite ();
 	}
 
 }

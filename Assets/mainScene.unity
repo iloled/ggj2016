@@ -54054,7 +54054,14 @@ MonoBehaviour:
   - {fileID: 1978105476}
   - {fileID: 2088444075}
   - {fileID: 592933108}
-  spriteList: []
+  spriteListRed:
+  - {fileID: 21300000, guid: 96c239d89b9a69d499c807a35c0ed1c6, type: 3}
+  - {fileID: 21300000, guid: f60750139e00c4f42b4515bd95893f29, type: 3}
+  - {fileID: 21300000, guid: 0d43fa21f6136584e908c756e9fc5a1c, type: 3}
+  spriteList:
+  - {fileID: 21300000, guid: 961aaea268235df408f5b475a14deee0, type: 3}
+  - {fileID: 21300000, guid: 4f7de7f8326dd3247bd476c92b36c265, type: 3}
+  - {fileID: 21300000, guid: 8cc5880bc312159459bfc1a487e80871, type: 3}
   neutralSpriteList:
   - {fileID: 21300000, guid: a692fb6d56272ee44bdf9b414549453c, type: 3}
   - {fileID: 21300000, guid: 99b07cdab5e4d1845946622185878131, type: 3}

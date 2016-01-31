@@ -22,4 +22,9 @@ public class Party {
 	{
 		members.Remove (n);
 	}
+
+	public bool isEmpty()
+	{
+		return members.Count == 0;
+	}
 }

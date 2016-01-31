@@ -23,9 +23,9 @@ public class AttackAction : Action {
 
 	protected override void behaviour()
 	{
+		Debug.Log ("attack");
 		target.hp -= attacker.pAttack;
 		if (target.hp <= 0) {
-			Game.removeNPC (target);
 			target.killNPC ();
 		}
 	}
