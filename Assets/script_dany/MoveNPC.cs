@@ -23,6 +23,7 @@ public class MoveNPC : MonoBehaviour {
 	[SerializeField]
 	CameraScript camScript;
 
+
 	[SerializeField]
 	TileScript myTiles;
 
@@ -63,12 +64,14 @@ public class MoveNPC : MonoBehaviour {
 	Player currentPlayer;
 	int[] movableTiles;
 	bool guiClicked = false;
+	bool isMoving = false;
 
 	public void startMovingNpc()
 	{
 		guiClicked = true;
 
 		if (selectedNpc != null) {
+			isMoving = true;
 			movableTiles = selectedNpc.listTilesMovement(32).ToArray();
 			myTiles.ChangeSprite(movableTiles, 1);
 			selectedNpc = null;
@@ -113,6 +116,8 @@ public class MoveNPC : MonoBehaviour {
 
 	public void warriorRitual()
 	{
+		popScript script = GameObject.Find("popManager").gameObject.GetComponent<popScript>();
+		script.popConvert (ritualTarget.position);
 		myMain.g.useAction (ConvertAction.Convert, currentNpc, ritualTarget, 0);
 		ritualPanel.SetActive (false);
 		ritualTarget = null;
@@ -121,6 +126,8 @@ public class MoveNPC : MonoBehaviour {
 
 	public void mageRitual()
 	{
+		popScript script = GameObject.Find("popManager").gameObject.GetComponent<popScript>();
+		script.popConvert (ritualTarget.position);
 		myMain.g.useAction (ConvertAction.CONVERT_MAGE, currentNpc, ritualTarget, 0);
 		ritualPanel.SetActive (false);
 		ritualTarget = null;
@@ -190,10 +197,14 @@ public class MoveNPC : MonoBehaviour {
 				//currentNpc = null;
 				return;
 			}
-
+			Debug.Log (currentPlayer);
 			Debug.Log (t.npc);
+			if (t.npc != null) {
+				Debug.Log (t.npc.party);
+			}
 
-			if(movableTiles != null && currentNpc != null){
+
+			if(isMoving){
 				foreach(var tilesPos in movableTiles)
 				{
 					if(pos == tilesPos)
@@ -217,9 +228,11 @@ public class MoveNPC : MonoBehaviour {
 						panelAction.SetActive(false);
 					}
 				}
+				isMoving = false;
 			}
-			else if(t.npc != null && t.npc.party != null &&  myMain.g.currentPlayer == t.npc.party.p )
+			else if(t.npc != null && myMain.g.currentPlayer == t.npc.party.p )
 			{
+				Debug.Log ("inside");
 				currentNpc = t.npc;
 				currentPlayer =currentNpc.party.p;
 				var actions = t.npc.actionList();
@@ -251,7 +264,7 @@ public class MoveNPC : MonoBehaviour {
 				{
 					btConvert.SetActive(false);
 				}
-			
+
 			/*
 				movableTiles = t.npc.listTilesMovement(32).ToArray();
 				myTiles.ChangeSprite(movableTiles, 1);
@@ -263,6 +276,7 @@ public class MoveNPC : MonoBehaviour {
 			}
 			else
 			{
+				Debug.Log ("forever alone");
 				selectedNpc = null;
 				panelAction.SetActive(false);
 			}
