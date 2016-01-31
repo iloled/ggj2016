@@ -12,7 +12,7 @@ public class Game  {
 	public Player currentPlayer;
 	Board b = new Board();
 
-	List<NPC> listNPC = new List<NPC> ();
+	public static List<NPC> listNPC = new List<NPC> ();
 
 	public Text actionText;
 	public Text playerName;
@@ -22,11 +22,15 @@ public class Game  {
 	public Text holyWater;
 
 
+
 	private bool firstTurn = true;
 
 	public void initPlayer()
 	{
 		p.party = new Party (p);
+
+		var neutral = new NormalGuy ();
+		neutral.position = 77;
 
 		var m = new Messiah ();
 		m.position = 78;
@@ -94,6 +98,7 @@ public class Game  {
 		listNPC.Add (n4);
 		listNPC.Add (m);
 		listNPC.Add (m2);
+		listNPC.Add (neutral);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -151,11 +156,17 @@ public class Game  {
 	}
 
 	private void updateRessource(){
+		
 		currentPlayer.ressource.addAllRessource ();
+		updateTextResource ();
+
+	}
+
+	public void updateTextResource()
+	{
 		gold.text = "Gold \n" + currentPlayer.ressource.gold;
 		blood.text = "Blood \n" + currentPlayer.ressource.blood;
 		holyWater.text = "Holy Water \n" + currentPlayer.ressource.holyWater;
-
 	}
 
 	private void updatePartyList()
@@ -192,6 +203,7 @@ public class Game  {
 
 	private AttackAction attack = new AttackAction ();
 	private MoveAction move = new MoveAction ();
+	private ConvertAction ritual = new ConvertAction ();
 
 	public void useAction(string actionName, NPC user, NPC target, int position)
 	{
@@ -205,6 +217,12 @@ public class Game  {
 			move.execute ();
 			break;
 		case ConvertAction.Convert:
+			ritual.target = target;
+			ritual.messiah = user;
+			ritual.execute ();
+			updateTextResource ();
+			updatePartyList ();
+			initBoard ();
 			break;
 		case AttackAction.ATTACK:
 			attack.attacker = user;
@@ -225,6 +243,16 @@ public class Game  {
 	public void initBoard()
 	{
 		b.init (listNPC);
+	}
+
+	public static void removeNPC( NPC npc)
+	{
+		listNPC.Remove (npc);
+	}
+
+	public static void addNPC( NPC npc)
+	{
+		listNPC.Add (npc);
 	}
 
 
