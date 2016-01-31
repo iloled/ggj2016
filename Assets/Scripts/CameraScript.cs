@@ -38,10 +38,10 @@ public class CameraScript : MonoBehaviour {
 	public bool checkHit()
 	{
 		bool hasHitted = false;
-
+		
 		if (Physics.Raycast (ray, out hit)) 
 		{
-			if(hit.transform != null){
+			if(hit.transform != null ){
 				hasHitted = true;
 			} 
 			else

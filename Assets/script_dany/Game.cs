@@ -29,6 +29,7 @@ public class Game  {
 		p.party = new Party (p);
 
 		var m = new Messiah ();
+		m.position = 78;
 
 		p.party.addNPC  (m);
 
@@ -36,7 +37,8 @@ public class Game  {
 
 		n1.position = 5;
 		n1.position = 15;
-		n1.moveRange = 1;
+		n1.moveRange = 10;
+		n1.pAttack = 100;
 
 		NPC n2 = new Mage ();
 		n2.hp = 6;
@@ -79,6 +81,7 @@ public class Game  {
 		neutre.moveRange = 4;
 
 		var m2 = new Messiah ();
+		m2.position = 69;
 
 		p2.party.addNPC (m2);
 
@@ -89,7 +92,8 @@ public class Game  {
 		listNPC.Add (n2);
 		listNPC.Add (n3);
 		listNPC.Add (n4);
-		listNPC.Add (neutre);
+		listNPC.Add (m);
+		listNPC.Add (m2);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -197,6 +201,7 @@ public class Game  {
 
 		case MoveAction.MOVE:
 			move.npc = user;
+			move.position = position;
 			move.execute ();
 			break;
 		case ConvertAction.Convert:
