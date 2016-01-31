@@ -32,10 +32,34 @@ public class Game  {
 		p.party = new Party (p);
 
 		var neutral = new NormalGuy ();
-		neutral.position = 77;
+		neutral.position = 237;
 
 		var neutral2 = new NormalGuy ();
-		neutral2.position = 89;
+		neutral2.position = 47;
+
+		var neutral3 = new NormalGuy ();
+		neutral3.position = 945;
+
+		var neutral4 = new NormalGuy ();
+		neutral4.position = 954;
+
+		var neutral5 = new NormalGuy ();
+		neutral5.position = 320;
+
+		var neutral6 = new NormalGuy ();
+		neutral6.position = 535;
+
+		var neutral7 = new NormalGuy ();
+		neutral7.position = 732;
+
+		var neutral8 = new NormalGuy ();
+		neutral8.position = 650;
+
+		var neutral9 = new NormalGuy ();
+		neutral9.position = 286;
+
+		var neutral10 = new NormalGuy ();
+		neutral10.position = 833;
 
 		var m = new Messiah (p);
 		m.position = 78;
@@ -51,26 +75,27 @@ public class Game  {
 
 		NPC n2 = new Mage (p);
 
-		n2.position = 600;
+		n2.position = 85;
 		n2.moveRange = 2;
 
 
 		NPC n3 = new Warrior (p2);
 
 
-		n3.position = 15;
+		n3.position = 972;
 		n3.moveRange = 32;
 		n3.pAttack = 100;
 
 		NPC n4 = new Mage (p2);
 
-		n2.position = 602;
+		n4.position = 990;
+		n4.moveRange = 2;
 
 
 		p2.party = new Party (p2);
 
 		var m2 = new Messiah (p2);
-		m2.position = 69;
+		m2.position = 948;
 		p2.party.addNPC (m2);
 
 		//p2.party.addNPC  (n4);
@@ -87,6 +112,14 @@ public class Game  {
 
 		listNPC.Add (neutral);
 		listNPC.Add (neutral2);
+		listNPC.Add (neutral3);
+		listNPC.Add (neutral4);
+		listNPC.Add (neutral5);
+		listNPC.Add (neutral6);
+		listNPC.Add (neutral7);
+		listNPC.Add (neutral8);
+		listNPC.Add (neutral9);
+		listNPC.Add (neutral10);
 
 		initBoard ();
 
