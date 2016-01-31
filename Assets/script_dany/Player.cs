@@ -25,11 +25,25 @@ public class Player {
 	 
 	// =============   Convertion des NPC  ============== //
 
+	public bool hasEnoughResourceForWarrior()
+	{
+		Debug.Log (ressource.gold );
+		Debug.Log (ressource.blood );
+		Debug.Log (ressource.holyWater );
+		Debug.Log (ressource.gold >= 1 && ressource.blood >= 1 && ressource.holyWater >= 1);
+		return ressource.gold >= 1 && ressource.blood >= 1 && ressource.holyWater >= 1;
+	}
+
+	public void removeWarriorResource()
+	{
+		ressource.gold --;
+		ressource.blood--;
+		ressource.holyWater--;
+	}
+
 	public void convertWarrior(NPC npc){
 		if (ressource.gold >= 1 && ressource.blood >= 1 && ressource.holyWater>=1) {
-			ressource.gold --;
-			ressource.blood--;
-			ressource.holyWater--;
+			removeWarriorResource ();
 
 			int position = npc.position;
 			npc = new Warrior ();
@@ -38,6 +52,10 @@ public class Player {
 		}
 	}
 
+	public bool hasEnoughResourceForArcher()
+	{
+		return ressource.blood >= 1 && ressource.holyWater>=2;
+	}
 
 	public void convertArcher(NPC npc){
 		if ( ressource.blood >= 1 && ressource.holyWater>=2) {
@@ -51,6 +69,10 @@ public class Player {
 		}
 	}	
 
+	public bool hasEnoughResourceForMage()
+	{
+		return ressource.blood >= 3;
+	}
 
 	public void convertMage(NPC npc){
 		if (ressource.blood >= 3) {
@@ -63,8 +85,12 @@ public class Player {
 		}
 	}
 
+	public bool hasEnoughResourceForThief()
+	{
+		return ressource.gold >= 2 && ressource.blood>=2;
+	}
 
-	public void converttThief(NPC npc){
+	public void convertThief(NPC npc){
 		if (ressource.gold >= 2 && ressource.blood>=2) {
 			ressource.gold -= 2;
 			ressource.blood -= 2;

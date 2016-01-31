@@ -12,7 +12,7 @@ public class Game  {
 	public Player currentPlayer;
 	Board b = new Board();
 
-	List<NPC> listNPC = new List<NPC> ();
+	public static List<NPC> listNPC = new List<NPC> ();
 
 	public Text actionText;
 	public Text playerName;
@@ -20,6 +20,7 @@ public class Game  {
 	public Text gold;
 	public Text blood;
 	public Text holyWater;
+
 
 
 	private bool firstTurn = true;
@@ -155,11 +156,17 @@ public class Game  {
 	}
 
 	private void updateRessource(){
+		
 		currentPlayer.ressource.addAllRessource ();
+		updateTextResource ();
+
+	}
+
+	public void updateTextResource()
+	{
 		gold.text = "Gold \n" + currentPlayer.ressource.gold;
 		blood.text = "Blood \n" + currentPlayer.ressource.blood;
 		holyWater.text = "Holy Water \n" + currentPlayer.ressource.holyWater;
-
 	}
 
 	private void updatePartyList()
@@ -213,8 +220,9 @@ public class Game  {
 			ritual.target = target;
 			ritual.messiah = user;
 			ritual.execute ();
-			// Ritual use an action only if it is confirmed
-			currentPlayer.actionNumber++;
+			updateTextResource ();
+			updatePartyList ();
+			initBoard ();
 			break;
 		case AttackAction.ATTACK:
 			attack.attacker = user;
@@ -235,6 +243,16 @@ public class Game  {
 	public void initBoard()
 	{
 		b.init (listNPC);
+	}
+
+	public static void removeNPC( NPC npc)
+	{
+		listNPC.Remove (npc);
+	}
+
+	public static void addNPC( NPC npc)
+	{
+		listNPC.Add (npc);
 	}
 
 

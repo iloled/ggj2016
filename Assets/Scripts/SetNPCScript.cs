@@ -13,10 +13,7 @@ public class SetNPCScript : MonoBehaviour {
 	[SerializeField]
 	GameObject[] goNPC;
 
-
 	List<NPC> npcs = new List<NPC>();
-
-
 
 	// Use this for initialization
 	void Start () {
@@ -43,16 +40,15 @@ public class SetNPCScript : MonoBehaviour {
 	public void PlaceObjectNPC(List<NPC> npc)
 	{
 		int i = 0;
-		//Debug.Log("ok");
 		foreach (var elem in npc) {
-
-
+			Debug.Log (elem.name);
 			var tiletransform = tiles.GetTileTransform(elem.position);
 
 			NPCTransform[i].position = new Vector3(tiletransform.position.x, 
 			                                       tiletransform.position.y,
 			                                       tiletransform.position.z);
 			elem.npcTransform = NPCTransform[i];
+			NPCTransform[i].gameObject.SetActive (true);
 
 			Board.tiles[elem.position].npc = elem; 
 			++i;

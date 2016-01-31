@@ -19,14 +19,26 @@ public class ConvertAction : Action
 	{
 		base.name = Convert;
 		base.p = p;
-		this.attacker = attacker;
 		this.target = target;
 	}
 
 
 	protected override void behaviour()
 	{
+		var npc = new Warrior ();
+		npc.name = "converted warrior";
+		npc.hp += target.hp;
+		npc.maxHp += target.maxHp;
 
+		npc.mp += target.mp;
+		npc.maxMp += target.maxMp;
+		npc.position = target.position;
+		Game.removeNPC (target);
+		target.killNPC ();
+		Board.tiles [npc.position].npc = npc;
+		messiah.party.addNPC (npc);
+		messiah.party.p.removeWarriorResource ();
+		Game.addNPC (npc);
 	}
 
 }

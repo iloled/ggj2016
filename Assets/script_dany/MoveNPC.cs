@@ -29,6 +29,21 @@ public class MoveNPC : MonoBehaviour {
 	[SerializeField]
 	GameObject panelAction;
 
+	[SerializeField]
+	GameObject ritualPanel;
+
+	[SerializeField]
+	GameObject mageButton;
+
+	[SerializeField]
+	GameObject warriorButton;
+
+	[SerializeField]
+	GameObject thiefButton;
+
+	[SerializeField]
+	GameObject archerButton;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -69,6 +84,7 @@ public class MoveNPC : MonoBehaviour {
 
 	int[] convertTileRange;
 	bool isConverting = false;
+	NPC ritualTarget = null;
 
 	public void startConvert()
 	{
@@ -79,6 +95,20 @@ public class MoveNPC : MonoBehaviour {
 			myTiles.ChangeSprite(attackableTile, 2);
 			selectedNpc = null;
 		}
+	}
+
+	public void cancelRitual()
+	{
+		guiClicked = true;
+		ritualPanel.SetActive (false);
+	}
+
+	public void warriorRitual()
+	{
+		myMain.g.useAction (ConvertAction.Convert, currentNpc, ritualTarget, 0);
+		ritualPanel.SetActive (false);
+		ritualTarget = null;
+		currentNpc = null;
 	}
 
 	void Update () {
@@ -112,7 +142,14 @@ public class MoveNPC : MonoBehaviour {
 			if (isConverting) {
 				if ( t.npc != null && t.npc.isNeutral() )
 				{
-					myMain.g.useAction(ConvertAction.Convert, currentNpc, t.npc, 0 );
+					ritualTarget = t.npc;
+					//myMain.g.useAction(ConvertAction.Convert, currentNpc, t.npc, 0 );
+					ritualPanel.SetActive(true);
+
+					mageButton.SetActive (currentNpc.party.p.hasEnoughResourceForMage());
+					warriorButton.SetActive (currentNpc.party.p.hasEnoughResourceForWarrior());
+					thiefButton.SetActive (currentNpc.party.p.hasEnoughResourceForThief());
+					archerButton.SetActive (currentNpc.party.p.hasEnoughResourceForArcher());
 
 				}
 
@@ -120,7 +157,8 @@ public class MoveNPC : MonoBehaviour {
 				myTiles.ClearSprite();
 				panelAction.SetActive(false);
 				convertTileRange = null;
-				currentNpc = null;
+				//currentNpc = null;
+				return;
 			}
 
 			if(movableTiles != null && currentNpc != null){
@@ -148,13 +186,11 @@ public class MoveNPC : MonoBehaviour {
 					}
 				}
 			}
-			else if(t.npc != null &&  myMain.g.currentPlayer == t.npc.party.p)
+			else if(t.npc != null && t.npc.party != null &&  myMain.g.currentPlayer == t.npc.party.p )
 			{
 
 				currentNpc = t.npc;
 				currentPlayer =currentNpc.party.p;
-				Debug.Log ("le nom du joueur "+currentPlayer.name);
-				currentPlayer.convertWarrior (currentNpc);
 				var actions = t.npc.actionList();
 
 

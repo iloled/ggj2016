@@ -16,5 +16,7 @@ public class Warrior : NPC {
 		mp = 4;
 		maxHp = 10;
 		maxMp = 4;
+		pAttack = 5;
+		moveRange = 3;
 	}
 }

@@ -269,8 +269,10 @@ public class NPC  {
 
 	public void killNPC()
 	{
-		this.party.removeNPC (this);
+		if(this.party != null)
+			this.party.removeNPC (this);
 		npcTransform.gameObject.SetActive (false);
+		Board.tiles [this.position].npc = null;
 	}
 
 	public List<string> actionList()
@@ -302,8 +304,6 @@ public class NPC  {
 	List<BaseSkill> startTurnSkill = new List<BaseSkill>();
 	List<BaseSkill> attackSkill = new List<BaseSkill>();
 	List<BaseSkill> endTurnSkill = new List<BaseSkill>();
-
-
 
 	public void triggerEndTurnEffect()
 	{
