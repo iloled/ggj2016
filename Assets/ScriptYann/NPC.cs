@@ -30,7 +30,8 @@ public class NPC  {
 
 	private AttackAction attack = new AttackAction();
 
-	public NPC(){
+	public NPC()
+	{
 		hp = maxHp =  1;
 		mp = maxMp = 1;
 		pAttack = 1;
@@ -278,6 +279,13 @@ public class NPC  {
 			this.party.removeNPC (this);
 		MonoBehaviour.Destroy (npcTransform.gameObject);
 		Board.tiles [this.position].npc = null;
+	}
+
+	public void ChangeNPCSprite(Sprite newSprite)
+	{
+		var spriteSlot = this.npcTransform.gameObject.GetComponent<SpriteRenderer>();
+		spriteSlot.sprite = newSprite;
+
 	}
 
 	public List<string> actionList()

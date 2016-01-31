@@ -17,7 +17,7 @@ public class Main : MonoBehaviour {
 	void Start () {
 		
 		g = new Game ();
-		g.initText (actionText, playerName, partyInfo,gold, blood, holyWater);
+		g.initText (actionText, playerName, partyInfo, gold, blood, holyWater);
 		g.initPlayer ();
 		g.initBoard ();
 		g.startGame (); 
