@@ -1,5 +1,5 @@
 ﻿using System;
-
+using UnityEngine;
 
 public class MoveAction : Action
 {
@@ -26,6 +26,7 @@ public class MoveAction : Action
 	{
 		npc.deleteSprite ();
 		npc.position = position;
+		Debug.Log (npc + " move to " + npc.position);
 		npc.setSprite ();
 	}
 

@@ -206,9 +206,13 @@ public class Game  {
 
 	public void updateTextResource()
 	{
-		gold.text = "Gold \n" + currentPlayer.ressource.gold;
+		/*gold.text = "Gold \n" + currentPlayer.ressource.gold;
 		blood.text = "Blood \n" + currentPlayer.ressource.blood;
-		holyWater.text = "Holy Water \n" + currentPlayer.ressource.holyWater;
+		holyWater.text = "Holy Water \n" + currentPlayer.ressource.holyWater;*/
+
+		gold.text = currentPlayer.ressource.gold.ToString ();
+		blood.text = currentPlayer.ressource.blood.ToString ();
+		holyWater.text = currentPlayer.ressource.holyWater.ToString();
 	}
 
 	private void updatePartyList()

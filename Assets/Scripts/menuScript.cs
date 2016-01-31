@@ -7,7 +7,7 @@ public class menuScript : MonoBehaviour {
 
 	public void Start()
 	{
-		text.text = "Winner : " +Globals.WINNER;
+		text.text = "Winner : " + Globals.WINNER;
 	}
 	public void exitApplication()
 	{

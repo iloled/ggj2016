@@ -638,7 +638,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Vous contr\xF4ler un messie"
+  m_Text: "Vous contr\xF4lez un proh\xE8te"
 --- !u!222 &1240102373
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1100,7 +1100,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: pour battre le messie adverse
+  m_Text: "pour battre le proph\xE8te adverse"
 --- !u!222 &2077014429
 CanvasRenderer:
   m_ObjectHideFlags: 0
