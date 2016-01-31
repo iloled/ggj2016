@@ -30,9 +30,14 @@ public class CameraScript : MonoBehaviour {
 		{
 			transform.Translate(new Vector3(0,speed * Time.deltaTime,0));
 		}
-
-
-
+		if(Input.GetKey(KeyCode.LeftArrow)&& myCamera.transform.position.x > 14.0f )
+		{
+			transform.Translate(new Vector3(-speed * Time.deltaTime,0,0) );
+		}
+		if(Input.GetKey(KeyCode.RightArrow) && myCamera.transform.position.x < 19.0f)
+		{
+			transform.Translate(new Vector3(speed * Time.deltaTime,0,0) );
+		}
 	}
 
 	public bool checkHit()
