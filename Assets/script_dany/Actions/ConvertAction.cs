@@ -10,6 +10,8 @@ public class ConvertAction : Action
 	public const string Convert = "Ritual";
 	public const string EXECUTE_RITUAL = "execute_ritual";
 
+	SetNPCScript npcScript;
+
 	public ConvertAction ()
 	{
 		base.name = Convert;
@@ -33,8 +35,11 @@ public class ConvertAction : Action
 		npc.mp += target.mp;
 		npc.maxMp += target.maxMp;
 		npc.position = target.position;
-		Game.removeNPC (target);
-		target.killNPC ();
+		//SetNPCScript
+		//target.ChangeNPCSprite (npcScript.SpriteList[1]);
+
+		//Game.removeNPC (target);
+		//target.killNPC ();
 		Board.tiles [npc.position].npc = npc;
 		messiah.party.addNPC (npc);
 		messiah.party.p.removeWarriorResource ();
