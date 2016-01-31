@@ -134,7 +134,7 @@ public class NPC  {
 		return result;
 	}
 
-	// donne les case où le npc peut se deplacer
+	// donne les case où le npc peut attaquer
 	//-- précondition: le npc dois se trouver sur une case valide
 	public List<int> listTilesAttack(int boardSize){
 		
@@ -192,16 +192,66 @@ public class NPC  {
 		return result;
 	}
 
+	public static int CONVERSION_RANGE = 1;
 
-	//le NPC est attaqué
-	public void isAttacked(int damage){
-		hp -= damage;
+	// donne les case où le npc peut attaquer
+	//-- précondition: le npc dois se trouver sur une case valide
+	public List<int> listTileConvert(int boardSize){
+
+		//-- calcul de la ligne pour les bordures
+		int landmark=0;
+		while (position > landmark + boardSize - 1)
+			landmark += boardSize;
+
+		List<int> result= new List<int>();
+
+		//-- le cas où le npc n'est pas sur le plateau
+		for (int i=0; i <= CONVERSION_RANGE; i++) {
+			for (int j = CONVERSION_RANGE-i; j >= 0; j--) {
+
+				//-- si la case ne depasse la ordure
+				if ((position +  j + i * boardSize)>=landmark+i * boardSize &&
+					(position +  j + i * boardSize)<=landmark+ i * boardSize + boardSize - 1 &&
+					(position +  j + i * boardSize)<boardSize*boardSize &&
+					(position +  j + i * boardSize)>=0 &&
+					!result.Exists(element=>element==(position + j + i * boardSize))) {
+					result.Add (position + j + i * boardSize);
+					//					Debug.Log(position + j + i * boardSize);
+				}
+
+				if ((position -  j + i * boardSize)>=landmark+i * boardSize &&
+					(position -  j + i * boardSize)<=landmark+ i * boardSize + boardSize - 1 &&
+					(position -  j + i * boardSize)<boardSize*boardSize &&
+					(position -  j + i * boardSize)>=0 &&
+					!result.Exists(element=>element==(position - j + i * boardSize)) ) {
+					result.Add (position - j + i * boardSize);
+					//				Debug.Log(+position - j + i * boardSize);
+				}
+
+				if ((position +  j - i * boardSize)>=landmark-i * boardSize &&
+					(position +  j - i * boardSize)<=landmark- i * boardSize + boardSize - 1 &&
+					(position +  j - i * boardSize)<boardSize*boardSize &&
+					(position +  j - i * boardSize)>=0 &&
+					!result.Exists(element=>element==(position + j - i * boardSize))) {
+					result.Add (position + j - i * boardSize);
+					//Debug.Log(position + j - i * boardSize);
+				}
+
+				if ((position -  j - i * boardSize)>=landmark-i * boardSize &&
+					(position -  j - i * boardSize)<=landmark- i * boardSize + boardSize - 1 &&
+					(position -  j - i * boardSize)<boardSize*boardSize &&
+					(position -  j - i * boardSize)>=0 &&
+					!result.Exists(element=>element==(position - j - i * boardSize)) ) {
+					result.Add (position - j - i * boardSize);
+					//Debug.Log(position - j - i * boardSize);
+				}
+
+			}
+
+		}
+		return result;
 	}
 
-	//le NPC est convertie
-	public void convert(player joueur){
-		camp = joueur;
-	}
 
 	//le NPC est convertie
 	public void showStat(){
@@ -224,15 +274,20 @@ public class NPC  {
 
 	public void killNPC()
 	{
-		this.party.removeNPC (this);
-		Debug.Log ("dead bitch " + name);
+		if(this.party != null)
+			this.party.removeNPC (this);
 		npcTransform.gameObject.SetActive (false);
-		//npcTransform.enabled = false;
+		Board.tiles [this.position].npc = null;
 	}
 
 	public List<string> actionList()
 	{
 		return actions;
+	}
+
+	public bool isNeutral()
+	{
+		return this.party == null;
 	}
 
 	public void useAction(string actionName) 
@@ -245,6 +300,34 @@ public class NPC  {
 			case AttackAction.ATTACK:
 				break;
 		 
+		}
+	}
+
+	// Effects
+
+	List<BaseSkill> skillList = new List<BaseSkill>();
+	List<BaseSkill> startTurnSkill = new List<BaseSkill>();
+	List<BaseSkill> attackSkill = new List<BaseSkill>();
+	List<BaseSkill> endTurnSkill = new List<BaseSkill>();
+
+	public void triggerEndTurnEffect()
+	{
+		foreach (var skill in endTurnSkill) {
+			skill.execute ();
+		}
+	}
+
+	public void attackStartTurnEffect()
+	{
+		foreach (var skill in attackSkill) {
+			skill.execute ();
+		}
+	}
+
+	public void triggerStartTurnEffect()
+	{
+		foreach (var skill in startTurnSkill) {
+			skill.execute ();
 		}
 	}
 

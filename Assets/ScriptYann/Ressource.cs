@@ -5,15 +5,6 @@ public class Ressource   {
 
 	public int position;
 	public int blood, gold, holyWater;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public Ressource(){
 		blood = 0;
@@ -46,7 +37,6 @@ public class Ressource   {
 		}
 
 	}
-		
 
 	public void setPosition(int newPosition){
 		position = newPosition;

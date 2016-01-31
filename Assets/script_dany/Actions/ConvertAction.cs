@@ -4,10 +4,11 @@ using System.Collections;
 
 public class ConvertAction : Action
 {
-	public NPC attacker;
+	public NPC messiah;
 	public NPC target;
 
-	public const string Convert = "Conversion";
+	public const string Convert = "Ritual";
+	public const string EXECUTE_RITUAL = "execute_ritual";
 
 	public ConvertAction ()
 	{
@@ -18,12 +19,26 @@ public class ConvertAction : Action
 	{
 		base.name = Convert;
 		base.p = p;
-		this.attacker = attacker;
 		this.target = target;
 	}
 
-	public void convert()
+
+	protected override void behaviour()
 	{
+		var npc = new Warrior ();
+		npc.name = "converted warrior";
+		npc.hp += target.hp;
+		npc.maxHp += target.maxHp;
+
+		npc.mp += target.mp;
+		npc.maxMp += target.maxMp;
+		npc.position = target.position;
+		Game.removeNPC (target);
+		target.killNPC ();
+		Board.tiles [npc.position].npc = npc;
+		messiah.party.addNPC (npc);
+		messiah.party.p.removeWarriorResource ();
+		Game.addNPC (npc);
 	}
 
 }
