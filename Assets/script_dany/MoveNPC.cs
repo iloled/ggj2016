@@ -56,6 +56,12 @@ public class MoveNPC : MonoBehaviour {
 	[SerializeField]
 	Text archerStats;
 
+	[SerializeField]
+	GameObject panelInfo;
+
+	[SerializeField]
+	Text descText;
+
 
 	public NPC selectedNpc;
 
@@ -140,6 +146,9 @@ public class MoveNPC : MonoBehaviour {
 	void Update () {
 	
 		if (Input.GetKeyUp(KeyCode.Mouse0) && camScript.checkHit ()) {
+
+
+
 			if( guiClicked)
 			{
 				guiClicked = false;
@@ -192,6 +201,11 @@ public class MoveNPC : MonoBehaviour {
 			}
 
 			Debug.Log (t.npc);
+			if (t.npc != null)
+			{
+				panelInfo.SetActive (true);
+				descText.text = t.npc.getDescription();
+			}
 
 			if(movableTiles != null && currentNpc != null){
 				foreach(var tilesPos in movableTiles)
@@ -223,6 +237,7 @@ public class MoveNPC : MonoBehaviour {
 				currentNpc = t.npc;
 				currentPlayer =currentNpc.party.p;
 				var actions = t.npc.actionList();
+
 
 
 				if ( actions.Contains(MoveAction.MOVE))

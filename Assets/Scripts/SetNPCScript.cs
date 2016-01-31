@@ -66,7 +66,7 @@ public class SetNPCScript : MonoBehaviour {
 		var y = idTile/32;
 
 		Transform newNPC = GameObject.Instantiate(prefabNPC, 
-		                                          new Vector3(1+x, 1+y, -0.1f), 
+		                                          new Vector3(1+x, 1+y, 0.0f), 
 		                                          Quaternion.identity) as Transform;
 
 		newNPC.tag = "npc";
