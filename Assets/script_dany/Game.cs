@@ -38,65 +38,78 @@ public class Game  {
 		neutral2.position = 47;
 
 		var neutral3 = new NormalGuy ();
-		neutral3.position = 945;
+		neutral3.position = 300;
 
 		var neutral4 = new NormalGuy ();
 		neutral4.position = 954;
 
 		var neutral5 = new NormalGuy ();
-		neutral5.position = 320;
+		neutral5.position = 200;
 
 		var neutral6 = new NormalGuy ();
 		neutral6.position = 535;
 
 		var neutral7 = new NormalGuy ();
-		neutral7.position = 732;
+		neutral7.position = 309;
 
 		var neutral8 = new NormalGuy ();
 		neutral8.position = 650;
 
 		var neutral9 = new NormalGuy ();
-		neutral9.position = 286;
+		neutral9.position = 244;
 
 		var neutral10 = new NormalGuy ();
-		neutral10.position = 833;
+		neutral10.position = 819;
+
+		var neutral11 = new NormalGuy ();
+		neutral11.position = 97;
+
+		var neutral12 = new NormalGuy ();
+		neutral12.position = 819;
+
+		var neutral13 = new NormalGuy ();
+		neutral13.position = 819;
+
+		var neutral14 = new NormalGuy ();
+		neutral14.position = 819;
+
+		var neutral15 = new NormalGuy ();
+		neutral15.position = 819;
 
 		var m = new Messiah (p);
-		m.position = 78;
+		m.position = 340;
 
-		p.party.addNPC  (m);
 
 		NPC n1 = new Warrior (p);
 
-		n1.position = 5;
+		n1.position = 339;
 
 		n1.moveRange = 32;
 		n1.pAttack = 100;
 
 		NPC n2 = new Mage (p);
 
-		n2.position = 85;
+		n2.position = 307;
 		n2.moveRange = 2;
 
 
 		NPC n3 = new Warrior (p2);
 
 
-		n3.position = 972;
+		n3.position = 334;
 		n3.moveRange = 32;
 		n3.pAttack = 100;
 
 		NPC n4 = new Mage (p2);
 
-		n4.position = 990;
+		n4.position = 301;
 		n4.moveRange = 2;
 
 
 		p2.party = new Party (p2);
 
 		var m2 = new Messiah (p2);
-		m2.position = 948;
-		p2.party.addNPC (m2);
+		m2.position = 333;
 
 		//p2.party.addNPC  (n4);
 
@@ -120,6 +133,11 @@ public class Game  {
 		listNPC.Add (neutral8);
 		listNPC.Add (neutral9);
 		listNPC.Add (neutral10);
+		listNPC.Add (neutral11);
+		//listNPC.Add (neutral12);
+		//listNPC.Add (neutral13);
+		//listNPC.Add (neutral14);
+		//listNPC.Add (neutral15);
 
 		initBoard ();
 
