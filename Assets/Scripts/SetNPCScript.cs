@@ -48,7 +48,7 @@ public class SetNPCScript : MonoBehaviour {
 			                                       tiletransform.position.y,
 			                                       tiletransform.position.z);
 			elem.npcTransform = NPCTransform[i];
-			NPCTransform[i].gameObject.SetActive (true);
+			//NPCTransform[i].gameObject.SetActive (true);
 
 			Board.tiles[elem.position].npc = elem; 
 			++i;

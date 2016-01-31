@@ -92,13 +92,17 @@ public class Game  {
 		p2.party.addNPC  (n3);
 		p2.party.addNPC  (n4);
 
+		//p2.party.addNPC  (neutral);
+
+
+		listNPC.Add (m);
+		listNPC.Add (m2);
 		listNPC.Add (n1);
 		listNPC.Add (n2);
 		listNPC.Add (n3);
 		listNPC.Add (n4);
-		listNPC.Add (m);
-		listNPC.Add (m2);
-		listNPC.Add (neutral);
+
+		//listNPC.Add (neutral);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -247,11 +251,13 @@ public class Game  {
 
 	public static void removeNPC( NPC npc)
 	{
+		Debug.Log (npc.name + " as been killed");
 		listNPC.Remove (npc);
 	}
 
 	public static void addNPC( NPC npc)
 	{
+
 		listNPC.Add (npc);
 	}
 

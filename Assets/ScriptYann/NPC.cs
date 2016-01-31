@@ -276,7 +276,7 @@ public class NPC  {
 	{
 		if(this.party != null)
 			this.party.removeNPC (this);
-		npcTransform.gameObject.SetActive (false);
+		MonoBehaviour.Destroy (npcTransform.gameObject);
 		Board.tiles [this.position].npc = null;
 	}
 
