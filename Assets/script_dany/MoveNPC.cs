@@ -147,7 +147,7 @@ public class MoveNPC : MonoBehaviour {
 
 			if (isAttacking)
 			{
-				if ( t.npc != null && t.npc.party.p != currentNpc.party.p )
+				if ( t.npc != null && (t.npc.party == null || t.npc.party.p != currentNpc.party.p) )
 				{
 					myMain.g.useAction(AttackAction.ATTACK, currentNpc, t.npc, 0 );
 

@@ -279,6 +279,9 @@ public class NPC  {
 			this.party.removeNPC (this);
 		MonoBehaviour.Destroy (npcTransform.gameObject);
 		Board.tiles [this.position].npc = null;
+
+
+
 	}
 
 	public void ChangeNPCSprite(Sprite newSprite)

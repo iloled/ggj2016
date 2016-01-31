@@ -52,7 +52,7 @@ public class Game  {
 		n2.moveRange = 2;
 
 		p.party.addNPC  (n1);
-		p.party.addNPC  (n2);
+		//p.party.addNPC  (n2);
 
 		p2.party = new Party (p2);
 
@@ -88,18 +88,18 @@ public class Game  {
 		p2.party.addNPC (m2);
 
 		//p2.party.addNPC  (n3);
-		p2.party.addNPC  (n4);
+		//p2.party.addNPC  (n4);
 
 		//p2.party.addNPC  (neutral);
 
-		listNPC.Add (m);
 		listNPC.Add (m2);
+		//listNPC.Add (m2);
 		listNPC.Add (n1);
-		listNPC.Add (n2);
+		//listNPC.Add (n2);
 		//listNPC.Add (n3);
-		listNPC.Add (n4);
+		//listNPC.Add (n4);
 
-		listNPC.Add (neutral);
+		//listNPC.Add (neutral);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -253,6 +253,12 @@ public class Game  {
 			attack.attacker = user;
 			attack.target = target;
 			attack.execute ();
+
+			if (target.party.isEmpty ()) {
+				Globals.WINNER = currentPlayer.name;
+				Application.LoadLevel ("gameOverScene");
+				Debug.Log ("mainScene");
+			}
 			break;
 		}
 
