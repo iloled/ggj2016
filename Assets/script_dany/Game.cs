@@ -33,11 +33,9 @@ public class Game  {
 
 		var neutral = new NormalGuy ();
 		neutral.position = 77;
-		neutral.sprite = script.neutralSpriteList [1];
 
 		var neutral2 = new NormalGuy ();
 		neutral2.position = 89;
-		neutral2.sprite = script.neutralSpriteList [3];
 
 		var m = new Messiah (p);
 		m.position = 78;
