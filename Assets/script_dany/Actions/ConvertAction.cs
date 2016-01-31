@@ -4,10 +4,11 @@ using System.Collections;
 
 public class ConvertAction : Action
 {
-	public NPC attacker;
+	public NPC messiah;
 	public NPC target;
 
-	public const string Convert = "Conversion";
+	public const string Convert = "Ritual";
+	public const string EXECUTE_RITUAL = "execute_ritual";
 
 	public ConvertAction ()
 	{
@@ -22,8 +23,10 @@ public class ConvertAction : Action
 		this.target = target;
 	}
 
-	public void convert()
+
+	protected override void behaviour()
 	{
+
 	}
 
 }

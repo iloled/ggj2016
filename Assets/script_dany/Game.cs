@@ -28,6 +28,9 @@ public class Game  {
 	{
 		p.party = new Party (p);
 
+		var neutral = new NormalGuy ();
+		neutral.position = 77;
+
 		var m = new Messiah ();
 		m.position = 78;
 
@@ -94,6 +97,7 @@ public class Game  {
 		listNPC.Add (n4);
 		listNPC.Add (m);
 		listNPC.Add (m2);
+		listNPC.Add (neutral);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -192,6 +196,7 @@ public class Game  {
 
 	private AttackAction attack = new AttackAction ();
 	private MoveAction move = new MoveAction ();
+	private ConvertAction ritual = new ConvertAction ();
 
 	public void useAction(string actionName, NPC user, NPC target, int position)
 	{
@@ -205,6 +210,11 @@ public class Game  {
 			move.execute ();
 			break;
 		case ConvertAction.Convert:
+			ritual.target = target;
+			ritual.messiah = user;
+			ritual.execute ();
+			// Ritual use an action only if it is confirmed
+			currentPlayer.actionNumber++;
 			break;
 		case AttackAction.ATTACK:
 			attack.attacker = user;

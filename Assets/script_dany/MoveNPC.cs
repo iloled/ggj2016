@@ -41,7 +41,6 @@ public class MoveNPC : MonoBehaviour {
 	int[] movableTiles;
 	bool guiClicked = false;
 
-
 	public void startMovingNpc()
 	{
 		guiClicked = true;
@@ -68,6 +67,20 @@ public class MoveNPC : MonoBehaviour {
 		}
 	}
 
+	int[] convertTileRange;
+	bool isConverting = false;
+
+	public void startConvert()
+	{
+		guiClicked = true;
+		if (selectedNpc != null) {
+			isConverting = true;
+			attackableTile = selectedNpc.listTileConvert(32).ToArray();
+			myTiles.ChangeSprite(attackableTile, 2);
+			selectedNpc = null;
+		}
+	}
+
 	void Update () {
 	
 		if (Input.GetKeyUp(KeyCode.Mouse0) && camScript.checkHit ()) {
@@ -78,14 +91,11 @@ public class MoveNPC : MonoBehaviour {
 				return;
 			}
 
-				int pos = camScript.GetPostionTile();
-				
-				Tile t = Board.tiles[pos];
+			int pos = camScript.GetPostionTile();
+			Tile t = Board.tiles[pos];
 
 			if (isAttacking)
 			{
-
-
 				if ( t.npc != null && t.npc.party.p != currentNpc.party.p )
 				{
 					myMain.g.useAction(AttackAction.ATTACK, currentNpc, t.npc, 0 );
@@ -99,82 +109,96 @@ public class MoveNPC : MonoBehaviour {
 				currentNpc = null;
 			}
 
-				if(movableTiles != null && currentNpc != null){
-					foreach(var tilesPos in movableTiles)
-					{
-						if(pos == tilesPos)
-						{
-							Board.tiles[currentNpc.position].npc = null;
-							Board.tiles[tilesPos].npc = currentNpc;
-							//currentNpc.position = tilesPos;
-							myMain.g.useAction(MoveAction.MOVE, currentNpc, null, tilesPos );
-							currentNpc = null;
-							myMain.g.initBoard();
+			if (isConverting) {
+				if ( t.npc != null && t.npc.isNeutral() )
+				{
+					myMain.g.useAction(ConvertAction.Convert, currentNpc, t.npc, 0 );
 
-							movableTiles = null;
-							myTiles.ClearSprite();
-							panelAction.SetActive(false);
-							break;
-						}
-							else
-						{
-							movableTiles = null;
-							myTiles.ClearSprite();
-							panelAction.SetActive(false);
-						}
+				}
+
+				isConverting = false;
+				myTiles.ClearSprite();
+				panelAction.SetActive(false);
+				convertTileRange = null;
+				currentNpc = null;
+			}
+
+			if(movableTiles != null && currentNpc != null){
+				foreach(var tilesPos in movableTiles)
+				{
+					if(pos == tilesPos)
+					{
+						Board.tiles[currentNpc.position].npc = null;
+						Board.tiles[tilesPos].npc = currentNpc;
+						//currentNpc.position = tilesPos;
+						myMain.g.useAction(MoveAction.MOVE, currentNpc, null, tilesPos );
+						currentNpc = null;
+						myMain.g.initBoard();
+
+						movableTiles = null;
+						myTiles.ClearSprite();
+						panelAction.SetActive(false);
+						break;
+					}
+					else
+					{
+						movableTiles = null;
+						myTiles.ClearSprite();
+						panelAction.SetActive(false);
 					}
 				}
-				else if(t.npc != null &&  myMain.g.currentPlayer == t.npc.party.p)
+			}
+			else if(t.npc != null &&  myMain.g.currentPlayer == t.npc.party.p)
+			{
+
+				currentNpc = t.npc;
+				currentPlayer =currentNpc.party.p;
+				Debug.Log ("le nom du joueur "+currentPlayer.name);
+				currentPlayer.convertWarrior (currentNpc);
+				var actions = t.npc.actionList();
+
+
+				if ( actions.Contains(MoveAction.MOVE))
 				{
-
-					currentNpc = t.npc;
-					currentPlayer =currentNpc.party.p;
-					Debug.Log ("le nom du joueur "+currentPlayer.name);
-					currentPlayer.convertWarrior (currentNpc);
-					var actions = t.npc.actionList();
-
-	
-					if ( actions.Contains(MoveAction.MOVE))
-					{
-						btMove.SetActive(true);
-					}
-					else
-					{
-						btMove.SetActive(false);
-					}
-
-					if ( actions.Contains(AttackAction.ATTACK))
-					{
-						btAttack.SetActive(true);
-					}
-					else
-					{
-						btAttack.SetActive(false);
-					}
-
-					if ( actions.Contains(ConvertAction.Convert))
-					{
-						btConvert.SetActive(true);
-					}
-					else
-					{
-						btConvert.SetActive(false);
-					}
-				
-				/*
-					movableTiles = t.npc.listTilesMovement(32).ToArray();
-					myTiles.ChangeSprite(movableTiles, 1);
-					*/
-					selectedNpc = t.npc;
-					panelAction.SetActive(true);
-					
-
+					btMove.SetActive(true);
 				}
 				else
 				{
-					selectedNpc = null;
-					panelAction.SetActive(false);
+					btMove.SetActive(false);
 				}
+
+				if ( actions.Contains(AttackAction.ATTACK))
+				{
+					btAttack.SetActive(true);
+				}
+				else
+				{
+					btAttack.SetActive(false);
+				}
+
+				if ( actions.Contains(ConvertAction.Convert))
+				{
+					btConvert.SetActive(true);
+				}
+				else
+				{
+					btConvert.SetActive(false);
+				}
+			
+			/*
+				movableTiles = t.npc.listTilesMovement(32).ToArray();
+				myTiles.ChangeSprite(movableTiles, 1);
+				*/
+				selectedNpc = t.npc;
+				panelAction.SetActive(true);
+				
+
+			}
+			else
+			{
+				selectedNpc = null;
+				panelAction.SetActive(false);
+			}
 		}
 	}
 }
