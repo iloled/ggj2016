@@ -26,7 +26,7 @@ public class CameraScript : MonoBehaviour {
 		{
 			transform.Translate(new Vector3(0,-speed * Time.deltaTime,0));
 		}
-		if(Input.GetKey(KeyCode.UpArrow) && myCamera.transform.position.y < 23.0f)
+		if(Input.GetKey(KeyCode.UpArrow) && myCamera.transform.position.y < 26.0f)
 		{
 			transform.Translate(new Vector3(0,speed * Time.deltaTime,0));
 		}

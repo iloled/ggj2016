@@ -9,7 +9,7 @@ public class Game  {
 	Player p = new Player();
 	Player p2 = new Player();
 	Player p3 = new Player();
-	Player currentPlayer;
+	public Player currentPlayer;
 	Board b = new Board();
 
 	List<NPC> listNPC = new List<NPC> ();
@@ -26,11 +26,11 @@ public class Game  {
 
 	public void initPlayer()
 	{
-		p.party = new Party ();
+		p.party = new Party (p);
 
 		var m = new Messiah ();
 
-		p.party.members.Add (m);
+		p.party.addNPC  (m);
 
 		NPC n1 = new Warrior ();
 
@@ -47,10 +47,10 @@ public class Game  {
 		n2.position = 600;
 		n2.moveRange = 2;
 
-		p.party.members.Add (n1);
-		p.party.members.Add (n2);
+		p.party.addNPC  (n1);
+		p.party.addNPC  (n2);
 
-		p2.party = new Party ();
+		p2.party = new Party (p2);
 
 		NPC n3 = new Thief ();
 		n3.hp = 4;
@@ -70,17 +70,26 @@ public class Game  {
 		n4.position = 100;
 		n4.moveRange = 4;
 
+		NPC neutre = new Archer ();
+		neutre.hp = 3;
+		neutre.mp = 0;
+		neutre.maxHp = 3;
+		neutre.maxMp = 0;
+		neutre.position = 13;
+		neutre.moveRange = 4;
+
 		var m2 = new Messiah ();
 
-		p2.party.members.Add (m2);
+		p2.party.addNPC (m2);
 
-		p2.party.members.Add (n3);
-		p2.party.members.Add (n4);
+		p2.party.addNPC  (n3);
+		p2.party.addNPC  (n4);
 
 		listNPC.Add (n1);
 		listNPC.Add (n2);
 		listNPC.Add (n3);
 		listNPC.Add (n4);
+		listNPC.Add (neutre);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -139,9 +148,9 @@ public class Game  {
 
 	private void updateRessource(){
 		currentPlayer.ressource.addAllRessource ();
-		gold.text = "Gold : " + currentPlayer.ressource.gold;
-		blood.text = "Blood : " + currentPlayer.ressource.blood;
-		holyWater.text = "Holy Water : " + currentPlayer.ressource.holyWater;
+		gold.text = "Gold \n" + currentPlayer.ressource.gold;
+		blood.text = "Blood \n" + currentPlayer.ressource.blood;
+		holyWater.text = "Holy Water \n" + currentPlayer.ressource.holyWater;
 
 	}
 

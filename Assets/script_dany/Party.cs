@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 public class Party {
 	public List<NPC> members = new List<NPC>();
+	public Player p ;
+
+	public Party(Player p)
+	{
+		this.p = p;
+	}
+
 
 	public void addNPC(NPC n)
 	{
