@@ -127,16 +127,6 @@ public class NPC  {
 		return result;
 	}		
 
-	//le NPC est attaqué
-	public void isAttacked(int damage){
-		hp -= damage;
-	}
-
-	//le NPC est convertie
-	public void convert(player joueur){
-		camp = joueur;
-	}
-
 	//le NPC est convertie
 	public void showStat(){
 		Debug.Log ("Statistics:\n"
@@ -176,6 +166,36 @@ public class NPC  {
 			case AttackAction.ATTACK:
 				break;
 		 
+		}
+	}
+
+	// Effects
+
+	List<BaseSkill> skillList = new List<BaseSkill>();
+	List<BaseSkill> startTurnSkill = new List<BaseSkill>();
+	List<BaseSkill> attackSkill = new List<BaseSkill>();
+	List<BaseSkill> endTurnSkill = new List<BaseSkill>();
+
+
+
+	public void triggerEndTurnEffect()
+	{
+		foreach (var skill in endTurnSkill) {
+			skill.execute ();
+		}
+	}
+
+	public void attackStartTurnEffect()
+	{
+		foreach (var skill in attackSkill) {
+			skill.execute ();
+		}
+	}
+
+	public void triggerStartTurnEffect()
+	{
+		foreach (var skill in startTurnSkill) {
+			skill.execute ();
 		}
 	}
 
