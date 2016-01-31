@@ -26,6 +26,8 @@ public class NPC  {
 	public Party party;
 	public List<string> actions = new List<string>();
 
+	public Transform npcTransform;
+
 	private AttackAction attack = new AttackAction();
 
 	public NPC(){
@@ -125,7 +127,66 @@ public class NPC  {
 
 			}
 		return result;
-	}		
+	}
+
+	// donne les case où le npc peut se deplacer
+	//-- précondition: le npc dois se trouver sur une case valide
+	public List<int> listTilesAttack(int boardSize){
+		
+		//-- calcul de la ligne pour les bordures
+		int landmark=0;
+		while (position > landmark + boardSize - 1)
+			landmark += boardSize;
+		
+		List<int> result= new List<int>();
+		
+		//-- le cas où le npc n'est pas sur le plateau
+		for (int i=0; i <= range; i++) {
+			for (int j = range-i; j >= 0; j--) {
+				
+				//-- si la case ne depasse la ordure
+				if ((position +  j + i * boardSize)>=landmark+i * boardSize &&
+				    (position +  j + i * boardSize)<=landmark+ i * boardSize + boardSize - 1 &&
+				    (position +  j + i * boardSize)<boardSize*boardSize &&
+				    (position +  j + i * boardSize)>=0 &&
+				    !result.Exists(element=>element==(position + j + i * boardSize))) {
+					result.Add (position + j + i * boardSize);
+					//					Debug.Log(position + j + i * boardSize);
+				}
+				
+				if ((position -  j + i * boardSize)>=landmark+i * boardSize &&
+				    (position -  j + i * boardSize)<=landmark+ i * boardSize + boardSize - 1 &&
+				    (position -  j + i * boardSize)<boardSize*boardSize &&
+				    (position -  j + i * boardSize)>=0 &&
+				    !result.Exists(element=>element==(position - j + i * boardSize)) ) {
+					result.Add (position - j + i * boardSize);
+					//				Debug.Log(+position - j + i * boardSize);
+				}
+				
+				if ((position +  j - i * boardSize)>=landmark-i * boardSize &&
+				    (position +  j - i * boardSize)<=landmark- i * boardSize + boardSize - 1 &&
+				    (position +  j - i * boardSize)<boardSize*boardSize &&
+				    (position +  j - i * boardSize)>=0 &&
+				    !result.Exists(element=>element==(position + j - i * boardSize))) {
+					result.Add (position + j - i * boardSize);
+					//Debug.Log(position + j - i * boardSize);
+				}
+				
+				if ((position -  j - i * boardSize)>=landmark-i * boardSize &&
+				    (position -  j - i * boardSize)<=landmark- i * boardSize + boardSize - 1 &&
+				    (position -  j - i * boardSize)<boardSize*boardSize &&
+				    (position -  j - i * boardSize)>=0 &&
+				    !result.Exists(element=>element==(position - j - i * boardSize)) ) {
+					result.Add (position - j - i * boardSize);
+					//Debug.Log(position - j - i * boardSize);
+				}
+				
+			}
+			
+		}
+		return result;
+	}
+
 
 	//le NPC est attaqué
 	public void isAttacked(int damage){
@@ -159,11 +220,14 @@ public class NPC  {
 	public void killNPC()
 	{
 		this.party.removeNPC (this);
+		Debug.Log ("dead bitch " + name);
+		npcTransform.gameObject.SetActive (false);
+		//npcTransform.enabled = false;
 	}
 
 	public List<string> actionList()
 	{
-		return null;
+		return actions;
 	}
 
 	public void useAction(string actionName) 

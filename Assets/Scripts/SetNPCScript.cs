@@ -10,6 +10,10 @@ public class SetNPCScript : MonoBehaviour {
 	[SerializeField]
 	Transform[] NPCTransform;
 
+	[SerializeField]
+	GameObject[] goNPC;
+
+
 	List<NPC> npcs = new List<NPC>();
 
 
@@ -48,11 +52,14 @@ public class SetNPCScript : MonoBehaviour {
 			NPCTransform[i].position = new Vector3(tiletransform.position.x, 
 			                                       tiletransform.position.y,
 			                                       tiletransform.position.z);
+			elem.npcTransform = NPCTransform[i];
+
 			Board.tiles[elem.position].npc = elem; 
 			++i;
 		}
 
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
