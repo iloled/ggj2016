@@ -169,6 +169,14 @@ public class MoveNPC : MonoBehaviour {
 			{
 				if ( t.npc != null && (t.npc.party == null || t.npc.party.p != currentNpc.party.p) )
 				{
+					popScript script = GameObject.Find("popManager").gameObject.GetComponent<popScript>();
+					if (currentNpc is Mage) {
+						script.popFire ( t.npc.position);
+					} else {
+						script.popSlash (  t.npc.position);
+					}
+
+
 					myMain.g.useAction(AttackAction.ATTACK, currentNpc, t.npc, 0 );
 
 				}
