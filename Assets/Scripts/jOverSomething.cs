@@ -25,13 +25,13 @@ public class jOverSomething : MonoBehaviour {
 
 		if (camScript.checkHit ()) {
 			if (camScript.GetTransform ().tag == "npc") {
-				panelInfo.SetActive (true);
-				if(Board.tiles[camScript.GetPostionTile()].npc != null)
-					descText.text = Board.tiles[camScript.GetPostionTile()].npc.getDescription();;
+				//panelInfo.SetActive (true);
+				//if(Board.tiles[camScript.GetPostionTile()].npc != null)
+					//descText.text = Board.tiles[camScript.GetPostionTile()].npc.getDescription();;
 				//
 			} else
 			{
-				panelInfo.SetActive (false);
+				//panelInfo.SetActive (false);
 			}
 		} 
 	
