@@ -21,8 +21,6 @@ public class Game  {
 	public Text blood;
 	public Text holyWater;
 
-
-
 	private bool firstTurn = true;
 
 	public void initPlayer()
@@ -89,20 +87,19 @@ public class Game  {
 
 		p2.party.addNPC (m2);
 
-		p2.party.addNPC  (n3);
+		//p2.party.addNPC  (n3);
 		p2.party.addNPC  (n4);
 
 		//p2.party.addNPC  (neutral);
-
 
 		listNPC.Add (m);
 		listNPC.Add (m2);
 		listNPC.Add (n1);
 		listNPC.Add (n2);
-		listNPC.Add (n3);
+		//listNPC.Add (n3);
 		listNPC.Add (n4);
 
-		//listNPC.Add (neutral);
+		listNPC.Add (neutral);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )
@@ -221,6 +218,30 @@ public class Game  {
 			move.execute ();
 			break;
 		case ConvertAction.Convert:
+			ritual.target = target;
+			ritual.messiah = user;
+			ritual.execute ();
+			updateTextResource ();
+			updatePartyList ();
+			initBoard ();
+			break;
+		case ConvertAction.CONVERT_ARCHER:
+			ritual.target = target;
+			ritual.messiah = user;
+			ritual.execute ();
+			updateTextResource ();
+			updatePartyList ();
+			initBoard ();
+			break;
+		case ConvertAction.CONVERT_MAGE:
+			ritual.target = target;
+			ritual.messiah = user;
+			ritual.execute ();
+			updateTextResource ();
+			updatePartyList ();
+			initBoard ();
+			break;
+		case ConvertAction.CONVERT_THIEF:
 			ritual.target = target;
 			ritual.messiah = user;
 			ritual.execute ();
