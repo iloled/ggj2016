@@ -70,6 +70,14 @@ public class Game  {
 		n4.position = 100;
 		n4.moveRange = 4;
 
+		NPC neutre = new Archer ();
+		neutre.hp = 3;
+		neutre.mp = 0;
+		neutre.maxHp = 3;
+		neutre.maxMp = 0;
+		neutre.position = 13;
+		neutre.moveRange = 4;
+
 		var m2 = new Messiah ();
 
 		p2.party.addNPC (m2);
@@ -81,6 +89,7 @@ public class Game  {
 		listNPC.Add (n2);
 		listNPC.Add (n3);
 		listNPC.Add (n4);
+		listNPC.Add (neutre);
 	}
 
 	public void initText( Text action, Text playerName, Text partyInfo, Text gold, Text blood, Text holyWater  )

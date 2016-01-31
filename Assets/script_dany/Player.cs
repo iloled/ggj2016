@@ -26,9 +26,10 @@ public class Player {
 	// =============   Convertion des NPC  ============== //
 
 	public void convertWarrior(NPC npc){
-		if (ressource.gold >= 2 && ressource.blood >= 1) {
-			ressource.gold -= 2;
+		if (ressource.gold >= 1 && ressource.blood >= 1 && ressource.holyWater>=1) {
+			ressource.gold --;
 			ressource.blood--;
+			ressource.holyWater--;
 
 			int position = npc.position;
 			npc = new Warrior ();
@@ -52,9 +53,8 @@ public class Player {
 
 
 	public void convertMage(NPC npc){
-		if (ressource.holyWater >= 1 && ressource.blood >= 2) {
-			ressource.blood -= 2;
-			ressource.holyWater--;
+		if (ressource.blood >= 3) {
+			ressource.blood -= 3;
 
 			int position = npc.position;
 			npc = new Mage ();
@@ -65,8 +65,9 @@ public class Player {
 
 
 	public void converttThief(NPC npc){
-		if (ressource.gold >= 3) {
-			ressource.gold -= 3;
+		if (ressource.gold >= 2 && ressource.blood>=2) {
+			ressource.gold -= 2;
+			ressource.blood -= 2;
 
 			int position = npc.position;
 			npc = new Thief ();

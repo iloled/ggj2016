@@ -34,6 +34,7 @@ public class MoveNPC : MonoBehaviour {
 	}
 
 	NPC currentNpc;
+	Player currentPlayer;
 	int[] movableTiles;
 	
 	// Update is called once per frame
@@ -75,6 +76,9 @@ public class MoveNPC : MonoBehaviour {
 				{
 
 					currentNpc = t.npc;
+					currentPlayer =currentNpc.party.p;
+					Debug.Log ("le nom du joueur "+currentPlayer.name);
+					currentPlayer.convertWarrior (currentNpc);
 					var actions = t.npc.actionList();
 					/*
 					if ( actions.Contains(MoveAction.))
@@ -93,7 +97,7 @@ public class MoveNPC : MonoBehaviour {
 					panelAction.SetActive(true);
 					
 
-				} 
+				}
 		}
 	}
 }
